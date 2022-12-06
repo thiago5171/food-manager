@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">food-manager</string>
+    <string name="styled_app_name">Food Manager</string>
 </resources>
