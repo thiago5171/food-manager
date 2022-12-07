@@ -1,4 +1,13 @@
 <resources>
     <string name="app_name">food-manager</string>
     <string name="styled_app_name">Food Manager</string>
+    <string name="save_msg">Salvar</string>
+    <string name="cancel_msg">Cancelar</string>
+    <string name="register_food_technical_sheet_title">Registro de ficha técnica</string>
+    <string name="text">Text</string>
+    <string name="recipe_title">Título da receita</string>
+    <string name="description">Descrição</string>
+    <string name="yield">Rendimento</string>
+    <string name="category">Categoria</string>
+    <string name="ingredients">Ingredientes</string>
 </resources>
