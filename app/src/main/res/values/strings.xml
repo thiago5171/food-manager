@@ -11,4 +11,10 @@
     <string name="category">Categoria</string>
     <string name="ingredients">Ingredientes</string>
     <string name="register_food_technical_sheet">Cadastrar ficha técnica</string>
+    <string name="user_mock">User</string>
+    <string name="menu_bar">Barra de menu</string>
+    <string name="recipes">Receitas</string>
+    <string name="money_management">Despesas e receitas</string>
+    <string name="finances">Finanças</string>
+    <string name="graphs">Relatórios</string>
 </resources>
