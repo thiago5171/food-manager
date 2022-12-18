@@ -1,12 +1,12 @@
-package view.food_technical_sheet
+package view.recipe.ingredient
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.food_manager.R
 
-class RegisterForm : AppCompatActivity() {
+class IngredientRegisterForm : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_register_form)
+        setContentView(R.layout.activity_ingredient_register_form)
     }
 }

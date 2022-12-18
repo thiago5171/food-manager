@@ -3,11 +3,12 @@ package domain
 import java.util.*
 import kotlin.collections.ArrayList
 
-class FoodTechnicalSheet(
+class Recipe(
     private var id: UUID,
     private var name: String,
     private var description: String,
     private var price: Double,
+    private var yield: Int,
     private var ingredients: ArrayList<Ingredient>
 ) {
     fun getId(): UUID {
@@ -26,7 +27,15 @@ class FoodTechnicalSheet(
         return this.price
     }
 
+    fun getYield(): Int {
+        return this.yield
+    }
+
     fun getIngredients(): ArrayList<Ingredient> {
         return this.ingredients
+    }
+
+    fun addIngredient(ingredient: Ingredient) {
+        this.ingredients.add(ingredient)
     }
 }

@@ -3,18 +3,24 @@
     <string name="styled_app_name">Food Manager</string>
     <string name="save_msg">Salvar</string>
     <string name="cancel_msg">Cancelar</string>
-    <string name="register_food_technical_sheet_title">Registro de ficha técnica</string>
+    <string name="register_recipe_title">Cadastro de receita</string>
+    <string name="required">* Obrigatório</string>
     <string name="text">Text</string>
     <string name="recipe_title">Título da receita</string>
     <string name="description">Descrição</string>
     <string name="yield">Rendimento</string>
     <string name="category">Categoria</string>
     <string name="ingredients">Ingredientes</string>
-    <string name="register_food_technical_sheet">Cadastrar ficha técnica</string>
     <string name="user_mock">User</string>
     <string name="menu_bar">Barra de menu</string>
     <string name="recipes">Receitas</string>
     <string name="money_management">Despesas e receitas</string>
     <string name="finances">Finanças</string>
     <string name="graphs">Relatórios</string>
+    <string name="name">Nome</string>
+    <string name="add_ingredient">Adicionar Ingrediente</string>
+    <string name="ingredient_register_title">Cadastro de ingrediente</string>
+    <string name="quantity">Quantidade</string>
+    <string name="unit_measurement">Unidade de medida</string>
+    <string name="price">Preço</string>
 </resources>

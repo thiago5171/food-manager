@@ -6,6 +6,8 @@ class Ingredient(
     private var id: UUID,
     private var name: String,
     private var description: String,
+    private var quantity: Double,
+    private var unitMeasurement: String,
     private var price: Double
 ) {
     fun getId(): UUID {
@@ -18,6 +20,14 @@ class Ingredient(
 
     fun getDescription(): String {
         return this.description
+    }
+
+    fun getQuantity(): Double {
+        return this.quantity
+    }
+
+    fun getUnitMeasurement(): String {
+        return this.unitMeasurement
     }
 
     fun getPrice(): Double {
