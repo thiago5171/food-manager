@@ -1,11 +1,12 @@
-package view
+package com.example.food_manager.view
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.LinearLayout
 import com.example.food_manager.R
-import view.recipe.RecipeRegisterForm
+import com.example.food_manager.view.recipe.RecipeRegisterForm
+import com.example.food_manager.view.recipe.list.RecipeList
 
 class Main : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -13,7 +14,7 @@ class Main : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         val recipesLayout = findViewById<LinearLayout>(R.id.recipes)
         recipesLayout.setOnClickListener {
-            val intent = Intent(this, RecipeRegisterForm::class.java)
+            val intent = Intent(this, RecipeList::class.java)
             startActivity(intent)
         }
     }

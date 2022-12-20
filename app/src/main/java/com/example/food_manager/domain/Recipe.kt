@@ -1,4 +1,4 @@
-package domain
+package com.example.food_manager.domain
 
 import java.util.*
 import kotlin.collections.ArrayList

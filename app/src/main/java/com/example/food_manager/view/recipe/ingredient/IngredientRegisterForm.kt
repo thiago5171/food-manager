@@ -1,4 +1,4 @@
-package view.recipe.ingredient
+package com.example.food_manager.view.recipe.ingredient
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
