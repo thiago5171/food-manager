@@ -3,7 +3,6 @@ package com.example.food_manager.view.recipe.list
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
 import android.widget.ListView
 import com.example.food_manager.R
 import com.example.food_manager.domain.RecipeItemListModel

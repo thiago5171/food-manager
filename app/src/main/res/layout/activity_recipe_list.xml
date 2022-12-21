@@ -7,15 +7,15 @@
     tools:context=".view.recipe.list.RecipeList">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:contentDescription="@string/description"
         android:id="@+id/createRecipe"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="250dp"
         android:layout_marginTop="580dp"
         android:clickable="true"
+        android:contentDescription="@string/description"
         android:focusable="true"
-        app:backgroundTint="#101C22"
+        app:backgroundTint="#58A9D1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/recipeListItem"
