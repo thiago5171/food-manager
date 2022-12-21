@@ -25,6 +25,3 @@ jobs:
 
       - name: App test
         run: ./gradlew test
-
-      - name: Android Test
-        run: ./gradlew androidTest
