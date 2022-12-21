@@ -18,8 +18,8 @@ class ExampleUnitTest {
     var recipes = ArrayList<RecipeItemListModel>()
     var url =
         "https://assets.unileversolutions.com/recipes-v2/214590.jpg"
-   val context = mock(Context::class.java)
-   val adapter = RecipeListAdapter(context,recipes = recipes)
+    val context = mock(Context::class.java)
+    val adapter = RecipeListAdapter(context,recipes = recipes)
 
     @Test
     fun addition_isCorrect() {
