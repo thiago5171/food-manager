@@ -15,6 +15,13 @@
         android:theme="@style/Theme.Foodmanager"
         tools:targetApi="31">
         <activity
+            android:name=".view.expense.ExpenseRegisterForm"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".view.recipe.list.RecipeList"
             android:exported="false">
             <meta-data
@@ -43,6 +50,7 @@
                 android:value="" />
         </activity>
         <activity
+            android:theme="@style/Theme.AppCompat.NoActionBar"
             android:name=".view.Main"
             android:exported="true">
             <intent-filter>
