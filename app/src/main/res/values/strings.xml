@@ -24,4 +24,5 @@
     <string name="unit_measurement">Unidade de medida</string>
     <string name="price">Preço</string>
     <string name="register_expense_title">Cadastro de despesa</string>
+    <string name="expense_value">Valor da despesa</string>
 </resources>
