@@ -30,6 +30,7 @@ class ExampleUnitTest {
     fun success_get_item_id(){
         recipes.add(
             RecipeItemListModel(
+                1,
                 "Torta de frango sem queijoTorta de frango sem queijoTorta de frango sem queijo",
                 "Especial do artur corno",
                 24.00,
@@ -52,6 +53,7 @@ class ExampleUnitTest {
     fun success_get_count(){
         recipes.add(
             RecipeItemListModel(
+                1,
                 "Torta de frango sem queijoTorta de frango sem queijoTorta de frango sem queijo",
                 "Especial do artur corno",
                 24.00,
