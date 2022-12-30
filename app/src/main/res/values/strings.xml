@@ -25,4 +25,7 @@
     <string name="price">Preço</string>
     <string name="register_expense_title">Cadastro de despesa</string>
     <string name="expense_value">Valor da despesa</string>
+    <string name="expenses">Despesas</string>
+    <string name="income">Receitas</string>
+    <string name="costs">Custos</string>
 </resources>

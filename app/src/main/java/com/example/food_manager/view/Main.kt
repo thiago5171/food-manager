@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.LinearLayout
 import com.example.food_manager.R
-import com.example.food_manager.view.expense.ExpenseRegisterForm
+import com.example.food_manager.view.finances.Finances
 import com.example.food_manager.view.recipe.list.RecipeList
 
 class Main : AppCompatActivity() {
@@ -18,9 +18,9 @@ class Main : AppCompatActivity() {
             startActivity(intent)
         }
 
-        val expenseLayout =findViewById<LinearLayout>(R.id.finances)
+        val expenseLayout = findViewById<LinearLayout>(R.id.finances)
         expenseLayout.setOnClickListener {
-            val intent = Intent(this, ExpenseRegisterForm::class.java)
+            val intent = Intent(this, Finances::class.java)
             startActivity(intent)
         }
     }

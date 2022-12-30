@@ -8,5 +8,6 @@ class ExpenseRegisterForm : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_expense_register_form)
+
     }
 }
