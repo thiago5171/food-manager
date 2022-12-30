@@ -117,11 +117,11 @@
                     android:adjustViewBounds="false"
                     android:background="@android:color/transparent"
                     android:src="@android:drawable/ic_menu_delete"
-                    android:tint="#7C0000"
                     android:tintMode="src_in"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    tools:ignore="MissingConstraints" />
+                    tools:ignore="MissingConstraints"
+                    app:tint="#7C0000" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
