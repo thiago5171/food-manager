@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
-    tools:context=".view.Main">
+    tools:context=".ui.Main">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layout_header"
         android:layout_width="match_parent"
@@ -51,7 +51,7 @@
                 android:padding="15dp"
                 app:layout_constraintDimensionRatio="H,1:1"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/finances"
+                app:layout_constraintEnd_toStartOf="@id/ingredients"
                 app:layout_constraintTop_toTopOf="parent"
             >
                 <ImageView
@@ -72,7 +72,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/finances"
+                android:id="@+id/ingredients"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="22dp"
@@ -84,6 +84,37 @@
                 app:layout_constraintStart_toEndOf="@id/recipes"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                >
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_margin="8dp"
+                    android:contentDescription="@string/app_name"
+                    android:padding="8dp"
+                    android:src="@drawable/ingredients" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/ingredients"
+                    android:textColor="@color/accent"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/finances"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="22dp"
+                android:background="@drawable/white_rectangle_background"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="15dp"
+                app:layout_constraintDimensionRatio="H,1:1"
+                app:layout_constraintEnd_toStartOf="@id/ingredients"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/recipes"
                 >
                 <ImageView
                     android:layout_width="100dp"
@@ -112,9 +143,9 @@
                 android:orientation="vertical"
                 android:padding="15dp"
                 app:layout_constraintDimensionRatio="H,1:1"
-                app:layout_constraintEnd_toStartOf="@id/finances"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/recipes"
+                app:layout_constraintStart_toEndOf="@id/finances"
+                app:layout_constraintStart_toStartOf="@id/ingredients"
+                app:layout_constraintTop_toBottomOf="@id/ingredients"
                 >
                 <ImageView
                     android:layout_width="100dp"

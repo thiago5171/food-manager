@@ -15,35 +15,42 @@
         android:theme="@style/Theme.Foodmanager"
         tools:targetApi="31">
         <activity
-            android:name=".view.recipe.list.RecipeList"
+            android:name=".ui.recipe.ingredient.SingleIngredient"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".domain.view.recipe.list.RecipeItemShort"
+            android:name=".ui.recipe.list.RecipeList"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".view.recipe.ingredient.IngredientRegisterForm"
+            android:name=".ui.recipe.list.RecipeItemShort"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".view.recipe.RecipeRegisterForm"
+            android:name=".ui.recipe.ingredient.IngredientRegisterForm"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".view.Main"
+            android:name=".ui.recipe.RecipeRegisterForm"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ui.Main"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

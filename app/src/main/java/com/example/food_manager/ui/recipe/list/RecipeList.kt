@@ -1,14 +1,13 @@
-package com.example.food_manager.view.recipe.list
+package com.example.food_manager.ui.recipe.list
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
 import android.widget.ListView
 import com.example.food_manager.R
 import com.example.food_manager.domain.RecipeItemListModel
-import com.example.food_manager.domain.adapter.RecipeListAdapter
-import com.example.food_manager.view.recipe.RecipeRegisterForm
+import com.example.food_manager.ui.adapter.RecipeListAdapter
+import com.example.food_manager.ui.recipe.RecipeRegisterForm
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class RecipeList : AppCompatActivity() {
