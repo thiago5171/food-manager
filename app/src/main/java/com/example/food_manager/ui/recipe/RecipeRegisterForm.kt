@@ -3,11 +3,13 @@ package com.example.food_manager.ui.recipe
 import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ListView
 import androidx.appcompat.app.AlertDialog
 import com.example.food_manager.R
 import com.example.food_manager.data.DatabaseHelper
 import com.example.food_manager.databinding.ActivityRecipeRegisterFormBinding
 import com.example.food_manager.domain.recipe.Ingredient
+import com.example.food_manager.ui.adapter.IngredientsAdapter
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
@@ -32,15 +34,6 @@ class RecipeRegisterForm : AppCompatActivity() {
 
             builder.setTitle(R.string.pick_ingredients)
             builder.setCancelable(false)
-            builder.setPositiveButton("OK") { dialog, _ ->
-                selectIngredients.setBackgroundColor(R.color.primaryDark)
-                for (ingredient in chosenIngredients) {
-                    selectIngredients.append("${ingredient.name} " +
-                            "${ingredient.quantity} ${ingredient.unitMeasurement}")
-                }
-                dialog.dismiss()
-            }
-            builder.setNegativeButton("Cancel") {dialog, _ -> dialog.cancel()}
 
             val db = DatabaseHelper.getInstance(this)
             val dao = db.ingredientDAO()
@@ -66,6 +59,15 @@ class RecipeRegisterForm : AppCompatActivity() {
                     checkedArray[which] = isChecked
                     chosenIngredients.add(ingredients[which])
                 }
+
+                builder.setPositiveButton("OK") { dialog, _ ->
+                    val adapter: IngredientsAdapter =
+                        IngredientsAdapter(applicationContext,chosenIngredients)
+                    val ingredientsList = findViewById<ListView>(R.id.choice_ingredient)
+                    ingredientsList.adapter = adapter
+                    dialog.dismiss()
+                }
+                builder.setNegativeButton("Cancel") {dialog, _ -> dialog.cancel()}
 
                 val alertDialog = builder.create()
                 alertDialog.show()

@@ -27,7 +27,6 @@ class IngredientsAdapter(
         return index.toLong()
     }
 
-    @SuppressLint("SetTextI18n")
     override fun getView(index: Int, viewLayout: View?, viewGroup: ViewGroup?): View {
         var layout: View? = viewLayout
         val inflater = LayoutInflater.from(context)
@@ -40,16 +39,11 @@ class IngredientsAdapter(
 
         val name = layout!!.findViewById<TextView>(R.id.ingredient_name)
         val quantity = layout.findViewById<TextView>(R.id.ingredient_quantity)
-        val unitMeasurement = layout.findViewById<TextView>(R.id.ingredient_unit_measurement)
-        val price = layout.findViewById<TextView>(R.id.ingredient_price)
-        val description = layout.findViewById<TextView>(R.id.ingredient_description)
+//        val unitMeasurement = layout.findViewById<TextView>(R.id.ingredient_unit_measurement)
 
         name.text = ingredient.name
         quantity.text = ingredient.quantity.toString()
-        unitMeasurement.text = ingredient.unitMeasurement
-        price.text = "R\$${ingredient.price}"
-        description.text = ingredient.description
-
+//        unitMeasurement.text = ingredient.unitMeasurement
         return layout
     }
 }
