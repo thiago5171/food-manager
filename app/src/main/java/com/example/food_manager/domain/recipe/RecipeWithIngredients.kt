@@ -11,5 +11,5 @@ data class RecipeWithIngredients(
         entityColumn = "ingredientID",
         associateBy = Junction(RecipeIngredientCrossRef::class)
     )
-    val ingredients: ArrayList<Ingredient>
+    val ingredients: List<Ingredient>
 )

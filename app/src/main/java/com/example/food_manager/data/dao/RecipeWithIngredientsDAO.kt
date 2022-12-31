@@ -1,18 +1,14 @@
 package com.example.food_manager.data.dao
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.Query
-import androidx.room.Transaction
-import com.example.food_manager.domain.recipe.RecipeWithIngredients
+import androidx.room.*
+import com.example.food_manager.domain.recipe.Recipe
+import com.example.food_manager.domain.recipe.RecipeIngredientCrossRef
 
 @Dao
 interface RecipeWithIngredientsDAO {
-    @Transaction
     @Insert
-    fun save(recipeWithIngredients: RecipeWithIngredients)
+    fun save(recipe: Recipe)
 
-    @Transaction
-    @Query("select * from recipeIngredientCrossRef where recipeID = :id")
-    fun findByID(id: Long): RecipeWithIngredients
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    fun saveIngredient(join: RecipeIngredientCrossRef)
 }
