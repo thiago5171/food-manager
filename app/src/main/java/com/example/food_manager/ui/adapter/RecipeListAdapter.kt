@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.example.food_manager.domain.RecipeItemListModel
 import com.example.food_manager.R
@@ -31,12 +32,18 @@ class RecipeListAdapter (val ctx: Context, val recipes: ArrayList<RecipeItemList
         val subTitle = view.findViewById<TextView>(R.id.recipeSubtitle)
         val urlImage = view.findViewById<ImageView>(R.id.recipeImage)
         val cost = view.findViewById<TextView>(R.id.recipeCost)
-
-        title.text = recipes.get(index).tittle
-        subTitle.text = recipes.get(index).subtitle
-        urlImage.tag = recipes.get(index).urlImage
-        Glide.with(ctx).load(recipes.get(index).urlImage).into(urlImage)
-        cost.text = "R$" + recipes.get(index).cost
+        val delete = view.findViewById<ImageView>(R.id.deleteButton)
+        val id= recipes.get(index).getId()
+        delete.setOnClickListener{
+            val toast = Toast.makeText(ctx, "deletou mentalmente $id ", Toast.LENGTH_SHORT
+            )
+            toast.show()
+        }
+        title.text = recipes.get(index).getTitle()
+        subTitle.text = recipes.get(index).getSubtitle()
+        urlImage.tag = recipes.get(index).getUrlImage()
+        Glide.with(ctx).load(recipes.get(index).getUrlImage()).into(urlImage)
+        cost.text = "R$" + recipes.get(index).getCost()
         return view
 
     }
