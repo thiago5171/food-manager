@@ -14,59 +14,65 @@ class RecipeList : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_recipe_list)
-        var recipes = ArrayList<RecipeItemListModel>()
-        var url =
+        val recipes = ArrayList<RecipeItemListModel>()
+        val url =
             "https://assets.unileversolutions.com/recipes-v2/214590.jpg"
         recipes.add(
             RecipeItemListModel(
-                "Torta de frango sem queijoTorta de frango sem queijoTorta de frango sem queijo",
-                "Especial do artur corno",
-                24.00,
-                url
+                id = 1,
+                tittle = "Torta de frango sem queijoTorta de frango sem queijoTorta de frango sem queijo",
+                subtitle = "Especial do artur corno",
+                cost = 24.00,
+                urlImage = url
             )
         )
         recipes.add(
             RecipeItemListModel(
-                "Torta de frango sem queijo",
-                "Especial do artur corno",
-                24.00,
-                url
+                id = 2,
+                tittle = "Torta de frango sem queijoTorta de frango sem queijoTorta de frango sem queijo",
+                subtitle = "Especial do artur corno",
+                cost = 24.00,
+                urlImage = url
             )
         )
         recipes.add(
             RecipeItemListModel(
-                "Torta de frango sem queijo",
-                "Especial do artur corno",
-                24.00,
-                url
+                id = 3,
+                tittle = "Torta de frango sem queijoTorta de frango sem queijoTorta de frango sem queijo",
+                subtitle = "Especial do artur corno",
+                cost = 24.00,
+                urlImage = url
             )
         )
         recipes.add(
             RecipeItemListModel(
-                "Torta de frango sem queijo",
-                "Especial do artur corno",
-                24.00,
-                url
+                id = 4,
+                tittle = "Torta de frango sem queijoTorta de frango sem queijoTorta de frango sem queijo",
+                subtitle = "Especial do artur corno",
+                cost = 24.00,
+                urlImage = url
             )
         )
         recipes.add(
             RecipeItemListModel(
-                "Torta de frango sem queijo",
-                "Especial do artur corno",
-                24.00,
-                url
+                id = 5,
+                tittle = "Torta de frango sem queijoTorta de frango sem queijoTorta de frango sem queijo",
+                subtitle = "Especial do artur corno",
+                cost = 24.00,
+                urlImage = url
             )
         )
         recipes.add(
             RecipeItemListModel(
-                "Torta de frango sem queijo",
-                "Especial do artur corno",
-                24.00,
-                url
+                id = 6,
+                tittle = "Torta de frango sem queijoTorta de frango sem queijoTorta de frango sem queijo",
+                subtitle = "Especial do artur corno",
+                cost = 24.00,
+                urlImage = url
             )
         )
 
-        var adapter: RecipeListAdapter = RecipeListAdapter(applicationContext, recipes)
+        val adapter = RecipeListAdapter(applicationContext, recipes)
         val list = findViewById<ListView>(R.id.recipeListItem)
 
         list.adapter = adapter
@@ -74,7 +80,6 @@ class RecipeList : AppCompatActivity() {
         createButton.setOnClickListener{
             val intent = Intent(this, RecipeRegisterForm::class.java)
             startActivity(intent)
-            true
         }
     }
 }
