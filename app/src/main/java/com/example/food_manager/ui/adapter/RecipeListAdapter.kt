@@ -1,4 +1,4 @@
-package com.example.food_manager.domain.adapter
+package com.example.food_manager.ui.adapter
 
 import android.content.Context
 import android.view.LayoutInflater

@@ -1,12 +1,12 @@
-package com.example.food_manager.view.recipe.ingredient
+package com.example.food_manager.ui.recipe.list
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.food_manager.R
 
-class IngredientRegisterForm : AppCompatActivity() {
+class RecipeItemShort : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_ingredient_register_form)
+        setContentView(R.layout.activity_recipe_item_short)
     }
 }
