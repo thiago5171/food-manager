@@ -1,9 +1,8 @@
 package com.example.food_manager
 
 import android.content.Context
-import androidx.test.core.app.ApplicationProvider
 import com.example.food_manager.domain.RecipeItemListModel
-import com.example.food_manager.domain.adapter.RecipeListAdapter
+import com.example.food_manager.ui.adapter.RecipeListAdapter
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotEquals
 import org.junit.Test
