@@ -95,7 +95,7 @@ class RecipeRegisterForm : AppCompatActivity() {
                 name = name,
                 description = description,
                 yield = yield,
-                price = price
+                cost = price
             )
 
             val recipeWithIngredients = RecipeWithIngredients(recipe, ingredients)
@@ -129,6 +129,6 @@ class RecipeRegisterForm : AppCompatActivity() {
 
     private fun isRecipeWithIngredientsValid(recipeWithIngredients: RecipeWithIngredients): Boolean {
         return recipeWithIngredients.recipe.name.isNotBlank() &&
-                recipeWithIngredients.recipe.price > 0 && recipeWithIngredients.recipe.yield > 0
+                recipeWithIngredients.recipe.cost > 0 && recipeWithIngredients.recipe.yield > 0
     }
 }

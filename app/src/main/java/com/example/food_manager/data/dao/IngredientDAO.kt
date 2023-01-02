@@ -10,9 +10,6 @@ interface IngredientDAO {
     @Insert
     fun save(ingredient: Ingredient)
 
-    @Query("select * from ingredient where id = :id")
-    fun findByID(id : Long) : Ingredient?
-
     @Query("select * from ingredient")
     fun findAll() : List<Ingredient>
 }

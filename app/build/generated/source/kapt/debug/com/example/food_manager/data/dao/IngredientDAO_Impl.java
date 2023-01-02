@@ -55,66 +55,14 @@ public final class IngredientDAO_Impl implements IngredientDAO {
   }
 
   @Override
-  public void save(final Ingredient ingredient) {
+  public void save(final Ingredient arg0) {
     __db.assertNotSuspendingTransaction();
     __db.beginTransaction();
     try {
-      __insertionAdapterOfIngredient.insert(ingredient);
+      __insertionAdapterOfIngredient.insert(arg0);
       __db.setTransactionSuccessful();
     } finally {
       __db.endTransaction();
-    }
-  }
-
-  @Override
-  public Ingredient findByID(final long id) {
-    final String _sql = "select * from ingredient where id = ?";
-    final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 1);
-    int _argIndex = 1;
-    _statement.bindLong(_argIndex, id);
-    __db.assertNotSuspendingTransaction();
-    final Cursor _cursor = DBUtil.query(__db, _statement, false, null);
-    try {
-      final int _cursorIndexOfId = CursorUtil.getColumnIndexOrThrow(_cursor, "id");
-      final int _cursorIndexOfName = CursorUtil.getColumnIndexOrThrow(_cursor, "name");
-      final int _cursorIndexOfDescription = CursorUtil.getColumnIndexOrThrow(_cursor, "description");
-      final int _cursorIndexOfQuantity = CursorUtil.getColumnIndexOrThrow(_cursor, "quantity");
-      final int _cursorIndexOfUnitMeasurement = CursorUtil.getColumnIndexOrThrow(_cursor, "unitMeasurement");
-      final int _cursorIndexOfPrice = CursorUtil.getColumnIndexOrThrow(_cursor, "price");
-      final Ingredient _result;
-      if(_cursor.moveToFirst()) {
-        final long _tmpId;
-        _tmpId = _cursor.getLong(_cursorIndexOfId);
-        final String _tmpName;
-        if (_cursor.isNull(_cursorIndexOfName)) {
-          _tmpName = null;
-        } else {
-          _tmpName = _cursor.getString(_cursorIndexOfName);
-        }
-        final String _tmpDescription;
-        if (_cursor.isNull(_cursorIndexOfDescription)) {
-          _tmpDescription = null;
-        } else {
-          _tmpDescription = _cursor.getString(_cursorIndexOfDescription);
-        }
-        final int _tmpQuantity;
-        _tmpQuantity = _cursor.getInt(_cursorIndexOfQuantity);
-        final String _tmpUnitMeasurement;
-        if (_cursor.isNull(_cursorIndexOfUnitMeasurement)) {
-          _tmpUnitMeasurement = null;
-        } else {
-          _tmpUnitMeasurement = _cursor.getString(_cursorIndexOfUnitMeasurement);
-        }
-        final double _tmpPrice;
-        _tmpPrice = _cursor.getDouble(_cursorIndexOfPrice);
-        _result = new Ingredient(_tmpId,_tmpName,_tmpDescription,_tmpQuantity,_tmpUnitMeasurement,_tmpPrice);
-      } else {
-        _result = null;
-      }
-      return _result;
-    } finally {
-      _cursor.close();
-      _statement.release();
     }
   }
 

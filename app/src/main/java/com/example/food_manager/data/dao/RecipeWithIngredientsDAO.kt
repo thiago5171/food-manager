@@ -11,4 +11,10 @@ interface RecipeWithIngredientsDAO {
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun saveIngredient(join: RecipeIngredientCrossRef)
+
+    @Query("select * from recipe")
+    fun findAllWithNoIngredients(): List<Recipe>
+
+    @Delete
+    fun deleteOne(recipe: Recipe)
 }
