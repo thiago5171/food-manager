@@ -1,11 +1,13 @@
 package com.example.food_manager.ui.adapter
 
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.food_manager.R
 import com.example.food_manager.data.dao.RecipeWithIngredientsDAO
 import com.example.food_manager.domain.recipe.Recipe
@@ -20,6 +22,7 @@ class RecipesAdapter (val recipes: ArrayList<Recipe>, val recipesDAO: RecipeWith
         val costView: TextView
         val yieldView: TextView
         val descriptionView: TextView
+        val recipeImageView: ImageView
         val deleteButton: ImageView
 
         init {
@@ -27,6 +30,7 @@ class RecipesAdapter (val recipes: ArrayList<Recipe>, val recipesDAO: RecipeWith
             costView = view.findViewById(R.id.recipe_cost)
             yieldView = view.findViewById(R.id.recipe_yield)
             descriptionView = view.findViewById(R.id.recipe_description)
+            recipeImageView = view.findViewById(R.id.recipe_image)
             deleteButton = view.findViewById(R.id.delete_button)
         }
     }
@@ -40,9 +44,11 @@ class RecipesAdapter (val recipes: ArrayList<Recipe>, val recipesDAO: RecipeWith
 
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
         viewHolder.nameView.text = recipes[position].name
-        viewHolder.costView.text = "R$${recipes[position].cost}"
-        viewHolder.yieldView.text = "${recipes[position].yield} UND."
+        viewHolder.costView.text = "Custa: R$${recipes[position].cost}"
+        viewHolder.yieldView.text = "Rende: ${recipes[position].yield}"
         viewHolder.descriptionView.text = recipes[position].description
+        Glide.with(viewHolder.recipeImageView.context).
+            load(Uri.parse(recipes[position].imgUri)).into(viewHolder.recipeImageView)
 
         viewHolder.deleteButton.setOnClickListener {
             val scope = MainScope()

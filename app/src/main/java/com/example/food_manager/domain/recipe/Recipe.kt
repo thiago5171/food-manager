@@ -11,4 +11,5 @@ data class Recipe(
     val description: String,
     val cost: Double,
     val yield: Int,
+    val imgUri: String
 ) : Serializable

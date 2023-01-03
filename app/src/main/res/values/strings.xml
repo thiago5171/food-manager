@@ -24,4 +24,5 @@
     <string name="unit_measurement">Unidade de medida</string>
     <string name="price">Preço</string>
     <string name="pick_ingredients">Escolha os ingredientes</string>
+    <string name="pick_image">Selecione uma imagem</string>
 </resources>
