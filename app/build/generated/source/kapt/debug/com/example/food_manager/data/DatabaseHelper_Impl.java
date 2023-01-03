@@ -17,6 +17,8 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 import androidx.sqlite.db.SupportSQLiteOpenHelper;
 import androidx.sqlite.db.SupportSQLiteOpenHelper.Callback;
 import androidx.sqlite.db.SupportSQLiteOpenHelper.Configuration;
+import com.example.food_manager.data.dao.ExpenseDAO;
+import com.example.food_manager.data.dao.ExpenseDAO_Impl;
 import com.example.food_manager.data.dao.IngredientDAO;
 import com.example.food_manager.data.dao.IngredientDAO_Impl;
 import com.example.food_manager.data.dao.RecipeWithIngredientsDAO;
@@ -37,6 +39,8 @@ public final class DatabaseHelper_Impl extends DatabaseHelper {
   private volatile IngredientDAO _ingredientDAO;
 
   private volatile RecipeWithIngredientsDAO _recipeWithIngredientsDAO;
+
+  private volatile ExpenseDAO _expenseDAO;
 
   @Override
   protected SupportSQLiteOpenHelper createOpenHelper(DatabaseConfiguration configuration) {
@@ -178,6 +182,7 @@ public final class DatabaseHelper_Impl extends DatabaseHelper {
     final HashMap<Class<?>, List<Class<?>>> _typeConvertersMap = new HashMap<Class<?>, List<Class<?>>>();
     _typeConvertersMap.put(IngredientDAO.class, IngredientDAO_Impl.getRequiredConverters());
     _typeConvertersMap.put(RecipeWithIngredientsDAO.class, RecipeWithIngredientsDAO_Impl.getRequiredConverters());
+    _typeConvertersMap.put(ExpenseDAO.class, ExpenseDAO_Impl.getRequiredConverters());
     return _typeConvertersMap;
   }
 
@@ -217,6 +222,20 @@ public final class DatabaseHelper_Impl extends DatabaseHelper {
           _recipeWithIngredientsDAO = new RecipeWithIngredientsDAO_Impl(this);
         }
         return _recipeWithIngredientsDAO;
+      }
+    }
+  }
+
+  @Override
+  public ExpenseDAO expenseDAO() {
+    if (_expenseDAO != null) {
+      return _expenseDAO;
+    } else {
+      synchronized(this) {
+        if(_expenseDAO == null) {
+          _expenseDAO = new ExpenseDAO_Impl(this);
+        }
+        return _expenseDAO;
       }
     }
   }
