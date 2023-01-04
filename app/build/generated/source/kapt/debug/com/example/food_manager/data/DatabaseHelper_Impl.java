@@ -52,7 +52,7 @@ public final class DatabaseHelper_Impl extends DatabaseHelper {
         _db.execSQL("CREATE TABLE IF NOT EXISTS `RecipeIngredientCrossRef` (`recipeID` INTEGER NOT NULL, `ingredientID` INTEGER NOT NULL, PRIMARY KEY(`recipeID`, `ingredientID`))");
         _db.execSQL("CREATE TABLE IF NOT EXISTS `Expense` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `description` TEXT NOT NULL, `price` REAL NOT NULL)");
         _db.execSQL("CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)");
-        _db.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '4be856a8308afba782c06d6c0999d7b7')");
+        _db.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'c27649187052069a6ae9997e122ccbb8')");
       }
 
       @Override
@@ -159,7 +159,7 @@ public final class DatabaseHelper_Impl extends DatabaseHelper {
         }
         return new RoomOpenHelper.ValidationResult(true, null);
       }
-    }, "4be856a8308afba782c06d6c0999d7b7", "63054336152960799958029ca4bc6764");
+    }, "c27649187052069a6ae9997e122ccbb8", "e93f026237002239b06afd6ce30a8721");
     final SupportSQLiteOpenHelper.Configuration _sqliteConfig = SupportSQLiteOpenHelper.Configuration.builder(configuration.context)
         .name(configuration.name)
         .callback(_openCallback)
