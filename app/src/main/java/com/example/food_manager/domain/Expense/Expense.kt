@@ -5,7 +5,7 @@ import androidx.room.PrimaryKey
 import java.io.Serializable
 
 @Entity
-class Expense(
+data class Expense(
     @PrimaryKey(autoGenerate = true) val id : Long = 0L,
     val name: String,
     val description: String,
