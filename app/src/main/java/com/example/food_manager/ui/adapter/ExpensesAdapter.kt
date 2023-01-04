@@ -14,30 +14,31 @@ import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class ExpensesAdapter(val expenses: ArrayList<Expense>, val expensesDAO: ExpenseDAO) : RecyclerView.Adapter<ExpensesAdapter.ViewHolder>() {
+class ExpensesAdapter(private val expenses: ArrayList<Expense>, private val expensesDAO: ExpenseDAO) :
+    RecyclerView.Adapter<ExpensesAdapter.ViewHolder>() {
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val titleView: TextView
+        val nameView: TextView
         val priceView: TextView
         val descriptionView: TextView
         val deleteButton: ImageView
 
         init {
-            titleView = view.findViewById(R.id.expenseTitle)
-            priceView = view.findViewById(R.id.expensePrice)
-            descriptionView = view.findViewById(R.id.recipe_description)
-            deleteButton = view.findViewById(R.id.delete_button)
+            nameView = view.findViewById(R.id.expense_name)
+            priceView = view.findViewById(R.id.expense_price)
+            descriptionView = view.findViewById(R.id.expense_description)
+            deleteButton = view.findViewById(R.id.expense_delete_button)
         }
     }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(viewGroup.context)
-            .inflate(R.layout.activity_expense_item_short, viewGroup, false)
+            .inflate(R.layout.activity_single_expense, viewGroup, false)
 
         return ViewHolder(view)
     }
 
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
-        viewHolder.titleView.text = expenses[position].name
+        viewHolder.nameView.text = expenses[position].name
         viewHolder.priceView.text = "R$${expenses[position].price}"
         viewHolder.descriptionView.text = expenses[position].description
 
