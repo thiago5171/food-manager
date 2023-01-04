@@ -1,10 +1,9 @@
 package com.example.food_manager.data.dao
 
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
-import com.example.food_manager.domain.Expense
+import androidx.room.*
+import com.example.food_manager.domain.Expense.Expense
 
+@Dao
 interface ExpenseDAO {
     @Insert
     fun save(expense: Expense)

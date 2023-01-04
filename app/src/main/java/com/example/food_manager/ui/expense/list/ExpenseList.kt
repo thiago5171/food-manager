@@ -2,57 +2,72 @@ package com.example.food_manager.ui.expense.list
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.ListView
 import androidx.appcompat.app.AppCompatActivity
-import com.example.food_manager.R
-import com.example.food_manager.domain.ExpenseItemListModel
-import com.example.food_manager.ui.adapter.ExpenseListAdapter
+import androidx.recyclerview.widget.GridLayoutManager
+import com.example.food_manager.data.DatabaseHelper
+import com.example.food_manager.databinding.ActivityExpenseListBinding
+import com.example.food_manager.domain.Expense.Expense
+import com.example.food_manager.ui.adapter.ExpensesAdapter
 import com.example.food_manager.ui.expense.ExpenseRegisterForm
-import com.google.android.material.floatingactionbutton.FloatingActionButton
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class ExpenseList : AppCompatActivity() {
+    private val binding by lazy {
+        ActivityExpenseListBinding.inflate(layoutInflater)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_expense_list)
-        val expenses = ArrayList<ExpenseItemListModel>()
-        val url1 = "https://s2.glbimg.com/PGe2eC7ZZDf83YQVbHlSo5yfgiI=/0x0:3024x4032/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_59edd422c0c84a879bd37670ae4f538a/internal_photos/bs/2020/O/u/yyfpMvSKADtaARRrXWBg/img-20200724-180122364.jpg"
-        val url2 = "https://s2.glbimg.com/gga75FAW8NWvei7UJimH9FPUTAA=/0x0:600x638/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_59edd422c0c84a879bd37670ae4f538a/internal_photos/bs/2021/A/T/WV0SPZQberBnGTiORIPA/fatura-cemig.jpg"
-        val url3 = "https://i.ytimg.com/vi/VK3MdRPF34Q/maxresdefault.jpg"
-        expenses.add(
-            ExpenseItemListModel(
-                "Gás de cozinha",
-                "Consumo de 2 gases de cozinha por mês",
-                120.00,
-                url1
+        setContentView(binding.root)
 
-            )
-        )
-        expenses.add(
-            ExpenseItemListModel(
-                "Conta de luz",
-                "Uso muitos eletrodomésticos para cozinhar",
-                259.88,
-                url2
-            )
-        )
-        expenses.add(
-            ExpenseItemListModel(
-                "Feira do mês",
-                "Todos os ingredientes que comprei no início do mês",
-                187.22,
-                url3
-            )
-        )
+        val db = DatabaseHelper.getInstance(this)
+        val dao = db.expenseDAO()
+        val scope = MainScope()
 
-        val adapter = ExpenseListAdapter(applicationContext, expenses)
-        val list = findViewById<ListView>(R.id.expenseListItem)
+        val list = binding.expenseList
+        scope.launch {
+            val expenses = withContext(Dispatchers.IO) {
+                dao.findAll()
+            }
 
-        list.adapter = adapter
-        val createButton = findViewById<FloatingActionButton>(R.id.createExpense)
-        createButton.setOnClickListener{
+            val expenseList = ArrayList<Expense>()
+            expenseList.addAll(expenses)
+            val adapter = ExpensesAdapter(expenseList, dao)
+
+            list.layoutManager = GridLayoutManager(
+                this@ExpenseList, GridLayoutManager.VERTICAL)
+            list.adapter = adapter
+        }
+
+        val createButton = binding.createExpense
+        createButton.setOnClickListener {
             val intent = Intent(this, ExpenseRegisterForm::class.java)
             startActivity(intent)
+        }
+    }
 
+    override fun onRestart() {
+        super.onRestart()
+        val db = DatabaseHelper.getInstance(this)
+        val dao = db.expenseDAO()
+        val scope = MainScope()
+
+        val list = binding.expenseList
+        scope.launch{
+            val expenses = withContext(Dispatchers.IO) {
+                dao.findAll()
+            }
+
+            val expensesList = ArrayList<Expense>()
+            expensesList.addAll(expenses)
+            val adapter = ExpensesAdapter(expensesList, dao)
+
+            list.layoutManager = GridLayoutManager(
+                this@ExpenseList, GridLayoutManager.VERTICAL)
+            list.adapter = adapter
         }
     }
 }

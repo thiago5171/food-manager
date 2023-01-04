@@ -50,8 +50,9 @@ public final class DatabaseHelper_Impl extends DatabaseHelper {
         _db.execSQL("CREATE TABLE IF NOT EXISTS `Recipe` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `description` TEXT NOT NULL, `cost` REAL NOT NULL, `yield` INTEGER NOT NULL)");
         _db.execSQL("CREATE TABLE IF NOT EXISTS `Ingredient` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `description` TEXT NOT NULL, `quantity` INTEGER NOT NULL, `unitMeasurement` TEXT NOT NULL, `price` REAL NOT NULL)");
         _db.execSQL("CREATE TABLE IF NOT EXISTS `RecipeIngredientCrossRef` (`recipeID` INTEGER NOT NULL, `ingredientID` INTEGER NOT NULL, PRIMARY KEY(`recipeID`, `ingredientID`))");
+        _db.execSQL("CREATE TABLE IF NOT EXISTS `Expense` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `description` TEXT NOT NULL, `price` REAL NOT NULL)");
         _db.execSQL("CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)");
-        _db.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'c1b85bb8f96f2570930c0b2cb596019a')");
+        _db.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '87ad6df1137bfb6c5470381962895bbe')");
       }
 
       @Override
@@ -59,6 +60,7 @@ public final class DatabaseHelper_Impl extends DatabaseHelper {
         _db.execSQL("DROP TABLE IF EXISTS `Recipe`");
         _db.execSQL("DROP TABLE IF EXISTS `Ingredient`");
         _db.execSQL("DROP TABLE IF EXISTS `RecipeIngredientCrossRef`");
+        _db.execSQL("DROP TABLE IF EXISTS `Expense`");
         if (mCallbacks != null) {
           for (int _i = 0, _size = mCallbacks.size(); _i < _size; _i++) {
             mCallbacks.get(_i).onDestructiveMigration(_db);
@@ -140,9 +142,23 @@ public final class DatabaseHelper_Impl extends DatabaseHelper {
                   + " Expected:\n" + _infoRecipeIngredientCrossRef + "\n"
                   + " Found:\n" + _existingRecipeIngredientCrossRef);
         }
+        final HashMap<String, TableInfo.Column> _columnsExpense = new HashMap<String, TableInfo.Column>(4);
+        _columnsExpense.put("id", new TableInfo.Column("id", "INTEGER", true, 1, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsExpense.put("name", new TableInfo.Column("name", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsExpense.put("description", new TableInfo.Column("description", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsExpense.put("price", new TableInfo.Column("price", "REAL", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        final HashSet<TableInfo.ForeignKey> _foreignKeysExpense = new HashSet<TableInfo.ForeignKey>(0);
+        final HashSet<TableInfo.Index> _indicesExpense = new HashSet<TableInfo.Index>(0);
+        final TableInfo _infoExpense = new TableInfo("Expense", _columnsExpense, _foreignKeysExpense, _indicesExpense);
+        final TableInfo _existingExpense = TableInfo.read(_db, "Expense");
+        if (! _infoExpense.equals(_existingExpense)) {
+          return new RoomOpenHelper.ValidationResult(false, "Expense(com.example.food_manager.domain.Expense.Expense).\n"
+                  + " Expected:\n" + _infoExpense + "\n"
+                  + " Found:\n" + _existingExpense);
+        }
         return new RoomOpenHelper.ValidationResult(true, null);
       }
-    }, "c1b85bb8f96f2570930c0b2cb596019a", "18df00e82055e62564e45209221ae1fe");
+    }, "87ad6df1137bfb6c5470381962895bbe", "0a23e4a00d43c4080d5b2ac9ca71b124");
     final SupportSQLiteOpenHelper.Configuration _sqliteConfig = SupportSQLiteOpenHelper.Configuration.builder(configuration.context)
         .name(configuration.name)
         .callback(_openCallback)
@@ -155,7 +171,7 @@ public final class DatabaseHelper_Impl extends DatabaseHelper {
   protected InvalidationTracker createInvalidationTracker() {
     final HashMap<String, String> _shadowTablesMap = new HashMap<String, String>(0);
     HashMap<String, Set<String>> _viewTables = new HashMap<String, Set<String>>(0);
-    return new InvalidationTracker(this, _shadowTablesMap, _viewTables, "Recipe","Ingredient","RecipeIngredientCrossRef");
+    return new InvalidationTracker(this, _shadowTablesMap, _viewTables, "Recipe","Ingredient","RecipeIngredientCrossRef","Expense");
   }
 
   @Override
@@ -167,6 +183,7 @@ public final class DatabaseHelper_Impl extends DatabaseHelper {
       _db.execSQL("DELETE FROM `Recipe`");
       _db.execSQL("DELETE FROM `Ingredient`");
       _db.execSQL("DELETE FROM `RecipeIngredientCrossRef`");
+      _db.execSQL("DELETE FROM `Expense`");
       super.setTransactionSuccessful();
     } finally {
       super.endTransaction();
