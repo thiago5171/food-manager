@@ -8,7 +8,7 @@
     android:outlineProvider="none"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent"
-    tools:context=".ui.expense.list.ExpenseItemShort">
+    tools:context=".ui.expense.list.SingleExpense">
 
     <LinearLayout
         android:layout_width="0dp"
@@ -44,7 +44,8 @@
                     android:scaleType="centerCrop"
                     app:srcCompat="@drawable/ic_launcher_foreground"
                     tools:ignore="ImageContrastCheck"
-                    tools:srcCompat="?attr/actionBarDivider" />
+                    tools:srcCompat="?attr/actionBarDivider"
+                    android:contentDescription="@string/expenses"/>
 
             </androidx.cardview.widget.CardView>
         </LinearLayout>
@@ -53,6 +54,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
+            android:paddingStart="0dp"
             android:paddingEnd="5dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -60,7 +62,7 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/expenseTitle"
+                    android:id="@+id/expense_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -76,7 +78,7 @@
                     />
 
                 <TextView
-                    android:id="@+id/expenseSubtitle"
+                    android:id="@+id/expense_description"
                     android:layout_width="0dp"
                     android:layout_height="24dp"
                     android:layout_marginStart="2dp"
@@ -91,10 +93,10 @@
                     app:autoSizeMinTextSize="16sp"
                     app:autoSizeTextType="none"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/expenseTitle" />
+                    app:layout_constraintTop_toBottomOf="@+id/expense_name" />
 
                 <TextView
-                    android:id="@+id/expensePrice"
+                    android:id="@+id/expense_price"
                     android:layout_width="107dp"
                     android:layout_height="0dp"
                     android:layout_marginTop="76dp"
@@ -106,6 +108,21 @@
                     app:layout_constraintHorizontal_bias="0.011"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/expense_delete_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:adjustViewBounds="false"
+                    android:background="@android:color/transparent"
+                    android:src="@android:drawable/ic_menu_delete"
+                    android:tintMode="src_in"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:tint="#7C0000"
+                    android:contentDescription="@string/cancel_msg"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
