@@ -17,6 +17,8 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 import androidx.sqlite.db.SupportSQLiteOpenHelper;
 import androidx.sqlite.db.SupportSQLiteOpenHelper.Callback;
 import androidx.sqlite.db.SupportSQLiteOpenHelper.Configuration;
+import com.example.food_manager.data.dao.ExpenseDAO;
+import com.example.food_manager.data.dao.ExpenseDAO_Impl;
 import com.example.food_manager.data.dao.IngredientDAO;
 import com.example.food_manager.data.dao.IngredientDAO_Impl;
 import com.example.food_manager.data.dao.RecipeWithIngredientsDAO;
@@ -38,6 +40,8 @@ public final class DatabaseHelper_Impl extends DatabaseHelper {
 
   private volatile RecipeWithIngredientsDAO _recipeWithIngredientsDAO;
 
+  private volatile ExpenseDAO _expenseDAO;
+
   @Override
   protected SupportSQLiteOpenHelper createOpenHelper(DatabaseConfiguration configuration) {
     final SupportSQLiteOpenHelper.Callback _openCallback = new RoomOpenHelper(configuration, new RoomOpenHelper.Delegate(1) {
@@ -46,8 +50,9 @@ public final class DatabaseHelper_Impl extends DatabaseHelper {
         _db.execSQL("CREATE TABLE IF NOT EXISTS `Recipe` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `description` TEXT NOT NULL, `cost` REAL NOT NULL, `yield` INTEGER NOT NULL, `imgUri` TEXT NOT NULL)");
         _db.execSQL("CREATE TABLE IF NOT EXISTS `Ingredient` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `description` TEXT NOT NULL, `quantity` INTEGER NOT NULL, `unitMeasurement` TEXT NOT NULL, `price` REAL NOT NULL)");
         _db.execSQL("CREATE TABLE IF NOT EXISTS `RecipeIngredientCrossRef` (`recipeID` INTEGER NOT NULL, `ingredientID` INTEGER NOT NULL, PRIMARY KEY(`recipeID`, `ingredientID`))");
+        _db.execSQL("CREATE TABLE IF NOT EXISTS `Expense` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `description` TEXT NOT NULL, `price` REAL NOT NULL)");
         _db.execSQL("CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)");
-        _db.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '4be856a8308afba782c06d6c0999d7b7')");
+        _db.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'c27649187052069a6ae9997e122ccbb8')");
       }
 
       @Override
@@ -55,6 +60,7 @@ public final class DatabaseHelper_Impl extends DatabaseHelper {
         _db.execSQL("DROP TABLE IF EXISTS `Recipe`");
         _db.execSQL("DROP TABLE IF EXISTS `Ingredient`");
         _db.execSQL("DROP TABLE IF EXISTS `RecipeIngredientCrossRef`");
+        _db.execSQL("DROP TABLE IF EXISTS `Expense`");
         if (mCallbacks != null) {
           for (int _i = 0, _size = mCallbacks.size(); _i < _size; _i++) {
             mCallbacks.get(_i).onDestructiveMigration(_db);
@@ -137,9 +143,23 @@ public final class DatabaseHelper_Impl extends DatabaseHelper {
                   + " Expected:\n" + _infoRecipeIngredientCrossRef + "\n"
                   + " Found:\n" + _existingRecipeIngredientCrossRef);
         }
+        final HashMap<String, TableInfo.Column> _columnsExpense = new HashMap<String, TableInfo.Column>(4);
+        _columnsExpense.put("id", new TableInfo.Column("id", "INTEGER", true, 1, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsExpense.put("name", new TableInfo.Column("name", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsExpense.put("description", new TableInfo.Column("description", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsExpense.put("price", new TableInfo.Column("price", "REAL", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        final HashSet<TableInfo.ForeignKey> _foreignKeysExpense = new HashSet<TableInfo.ForeignKey>(0);
+        final HashSet<TableInfo.Index> _indicesExpense = new HashSet<TableInfo.Index>(0);
+        final TableInfo _infoExpense = new TableInfo("Expense", _columnsExpense, _foreignKeysExpense, _indicesExpense);
+        final TableInfo _existingExpense = TableInfo.read(_db, "Expense");
+        if (! _infoExpense.equals(_existingExpense)) {
+          return new RoomOpenHelper.ValidationResult(false, "Expense(com.example.food_manager.domain.Expense.Expense).\n"
+                  + " Expected:\n" + _infoExpense + "\n"
+                  + " Found:\n" + _existingExpense);
+        }
         return new RoomOpenHelper.ValidationResult(true, null);
       }
-    }, "4be856a8308afba782c06d6c0999d7b7", "63054336152960799958029ca4bc6764");
+    }, "c27649187052069a6ae9997e122ccbb8", "e93f026237002239b06afd6ce30a8721");
     final SupportSQLiteOpenHelper.Configuration _sqliteConfig = SupportSQLiteOpenHelper.Configuration.builder(configuration.context)
         .name(configuration.name)
         .callback(_openCallback)
@@ -152,7 +172,7 @@ public final class DatabaseHelper_Impl extends DatabaseHelper {
   protected InvalidationTracker createInvalidationTracker() {
     final HashMap<String, String> _shadowTablesMap = new HashMap<String, String>(0);
     HashMap<String, Set<String>> _viewTables = new HashMap<String, Set<String>>(0);
-    return new InvalidationTracker(this, _shadowTablesMap, _viewTables, "Recipe","Ingredient","RecipeIngredientCrossRef");
+    return new InvalidationTracker(this, _shadowTablesMap, _viewTables, "Recipe","Ingredient","RecipeIngredientCrossRef","Expense");
   }
 
   @Override
@@ -164,6 +184,7 @@ public final class DatabaseHelper_Impl extends DatabaseHelper {
       _db.execSQL("DELETE FROM `Recipe`");
       _db.execSQL("DELETE FROM `Ingredient`");
       _db.execSQL("DELETE FROM `RecipeIngredientCrossRef`");
+      _db.execSQL("DELETE FROM `Expense`");
       super.setTransactionSuccessful();
     } finally {
       super.endTransaction();
@@ -179,6 +200,7 @@ public final class DatabaseHelper_Impl extends DatabaseHelper {
     final HashMap<Class<?>, List<Class<?>>> _typeConvertersMap = new HashMap<Class<?>, List<Class<?>>>();
     _typeConvertersMap.put(IngredientDAO.class, IngredientDAO_Impl.getRequiredConverters());
     _typeConvertersMap.put(RecipeWithIngredientsDAO.class, RecipeWithIngredientsDAO_Impl.getRequiredConverters());
+    _typeConvertersMap.put(ExpenseDAO.class, ExpenseDAO_Impl.getRequiredConverters());
     return _typeConvertersMap;
   }
 
@@ -218,6 +240,20 @@ public final class DatabaseHelper_Impl extends DatabaseHelper {
           _recipeWithIngredientsDAO = new RecipeWithIngredientsDAO_Impl(this);
         }
         return _recipeWithIngredientsDAO;
+      }
+    }
+  }
+
+  @Override
+  public ExpenseDAO expenseDAO() {
+    if (_expenseDAO != null) {
+      return _expenseDAO;
+    } else {
+      synchronized(this) {
+        if(_expenseDAO == null) {
+          _expenseDAO = new ExpenseDAO_Impl(this);
+        }
+        return _expenseDAO;
       }
     }
   }

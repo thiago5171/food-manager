@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.LinearLayout
 import com.example.food_manager.R
 import com.example.food_manager.databinding.ActivityMainBinding
+import com.example.food_manager.ui.finances.Finances
 import com.example.food_manager.ui.recipe.ingredient.IngredientRegisterForm
 import com.example.food_manager.ui.recipe.list.RecipeList
 
@@ -27,6 +28,12 @@ class Main : AppCompatActivity() {
         val ingredientsLayout = binding.ingredients
         ingredientsLayout.setOnClickListener {
             val intent = Intent(this, IngredientRegisterForm::class.java)
+            startActivity(intent)
+        }
+
+        val expenseLayout = findViewById<LinearLayout>(R.id.finances)
+        expenseLayout.setOnClickListener {
+            val intent = Intent(this, Finances::class.java)
             startActivity(intent)
         }
     }

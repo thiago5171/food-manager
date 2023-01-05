@@ -15,6 +15,34 @@
         android:theme="@style/Theme.Foodmanager"
         tools:targetApi="31">
         <activity
+            android:name=".ui.finances.Finances"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ui.expense.list.ExpenseList"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ui.expense.list.SingleExpense"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ui.expense.ExpenseRegisterForm"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".ui.recipe.ingredient.SingleIngredient"
             android:exported="false">
             <meta-data
