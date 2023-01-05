@@ -6,15 +6,23 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewbinding.ViewBindings
 import com.bumptech.glide.Glide
 import com.example.food_manager.R
 import com.example.food_manager.data.dao.RecipeWithIngredientsDAO
 import com.example.food_manager.domain.recipe.Recipe
+import com.example.food_manager.ui.recipe.ingredient.IngredientRegisterForm
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import android.content.Intent
+import androidx.core.app.ActivityOptionsCompat
+import com.example.food_manager.ui.recipe.RecipeEditForm
+import com.example.food_manager.ui.recipe.RecipeRegisterForm
+
 
 class RecipesAdapter (val recipes: ArrayList<Recipe>, val recipesDAO: RecipeWithIngredientsDAO) : RecyclerView.Adapter<RecipesAdapter.ViewHolder>(){
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -24,6 +32,7 @@ class RecipesAdapter (val recipes: ArrayList<Recipe>, val recipesDAO: RecipeWith
         val descriptionView: TextView
         val recipeImageView: ImageView
         val deleteButton: ImageView
+
 
         init {
             nameView = view.findViewById(R.id.recipe_name)
@@ -50,6 +59,26 @@ class RecipesAdapter (val recipes: ArrayList<Recipe>, val recipesDAO: RecipeWith
         Glide.with(viewHolder.recipeImageView.context).
             load(Uri.parse(recipes[position].imgUri)).into(viewHolder.recipeImageView)
 
+        viewHolder.itemView.setOnClickListener{view->
+            val i = Intent(view.context,  RecipeRegisterForm::class.java)
+            view.context.startActivity(i)
+            val scope = MainScope()
+            scope.launch {
+                withContext(Dispatchers.IO) {
+                    val  item = recipesDAO.findFullRecipeById(recipes[position].id)
+//                    val nameEdit = view.findViewById<TextView>(R.id.edit_recipe_name_edit)
+//                    val descriptionEdit = view.findViewById<TextView>(R.id.edit_recipe_description_edit)
+//                    val yieldEdit = view.findViewById<TextView>(R.id.edit_recipe_yield_field)
+//                    nameEdit.text = item.recipe.name
+//                    descriptionEdit.text = item.recipe.description
+//                    yieldEdit.text = item.recipe.yield.toString()
+
+                    recipes.clear()
+                }
+            }
+            notifyItemRemoved(position)
+            notifyItemRangeChanged(position, recipes.size)
+        }
         viewHolder.deleteButton.setOnClickListener {
             val scope = MainScope()
             scope.launch {

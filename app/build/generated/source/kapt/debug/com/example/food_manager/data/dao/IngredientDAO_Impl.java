@@ -55,11 +55,11 @@ public final class IngredientDAO_Impl implements IngredientDAO {
   }
 
   @Override
-  public void save(final Ingredient ingredient) {
+  public void save(final Ingredient arg0) {
     __db.assertNotSuspendingTransaction();
     __db.beginTransaction();
     try {
-      __insertionAdapterOfIngredient.insert(ingredient);
+      __insertionAdapterOfIngredient.insert(arg0);
       __db.setTransactionSuccessful();
     } finally {
       __db.endTransaction();

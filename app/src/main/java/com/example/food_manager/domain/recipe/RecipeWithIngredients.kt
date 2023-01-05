@@ -1,11 +1,13 @@
 package com.example.food_manager.domain.recipe
 
 import androidx.room.Embedded
+import androidx.room.Entity
 import androidx.room.Junction
 import androidx.room.Relation
 
+@Entity
 data class RecipeWithIngredients(
-    @Embedded val recipe: Recipe,
+    @Embedded var recipe: Recipe,
     @Relation(
         parentColumn = "recipeID",
         entityColumn = "ingredientID",

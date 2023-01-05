@@ -5,6 +5,6 @@ import java.io.Serializable
 
 @Entity(primaryKeys = ["recipeID", "ingredientID"])
 data class RecipeIngredientCrossRef(
-    val recipeID: Long,
+    var recipeID: Long,
     val ingredientID: Long
 ): Serializable

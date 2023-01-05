@@ -3,8 +3,6 @@ package com.example.food_manager.ui
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.LinearLayout
-import com.example.food_manager.R
 import com.example.food_manager.databinding.ActivityMainBinding
 import com.example.food_manager.ui.finances.Finances
 import com.example.food_manager.ui.recipe.ingredient.IngredientRegisterForm

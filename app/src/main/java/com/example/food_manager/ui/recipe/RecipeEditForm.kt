@@ -13,6 +13,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.food_manager.R
 import com.example.food_manager.data.DatabaseHelper
+import com.example.food_manager.databinding.ActivityRecipeEditFormBinding
 import com.example.food_manager.databinding.ActivityRecipeRegisterFormBinding
 import com.example.food_manager.domain.recipe.Ingredient
 import com.example.food_manager.domain.recipe.Recipe
@@ -24,9 +25,9 @@ import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class RecipeRegisterForm : AppCompatActivity() {
+class RecipeEditForm : AppCompatActivity() {
     private val binding by lazy {
-        ActivityRecipeRegisterFormBinding.inflate(layoutInflater)
+        ActivityRecipeEditFormBinding.inflate(layoutInflater)
     }
 
     private var chosenIngredients = ArrayList<Ingredient>()
@@ -40,7 +41,7 @@ class RecipeRegisterForm : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        val pickImageButton = binding.pickRecipeImageAction
+        val pickImageButton = binding.editPickRecipeImageAction
 
         pickImageButton.setOnClickListener {
             pickImage()
@@ -48,12 +49,12 @@ class RecipeRegisterForm : AppCompatActivity() {
 
         }
 
-        val selectIngredients = binding.selectIngredients
+        val selectIngredients = binding.editSelectIngredients
         selectIngredients.setOnClickListener {
             selectIngredients()
         }
 
-        val saveRecipeButton = binding.saveRecipeBtn
+        val saveRecipeButton = binding.editSaveRecipeBtn
         saveRecipeButton.setOnClickListener {
             saveRecipe()
         }
@@ -107,9 +108,9 @@ class RecipeRegisterForm : AppCompatActivity() {
 
             builder.setPositiveButton("OK") { dialog, _ ->
                 val adapter = IngredientsAdapter(chosenIngredients)
-                val ingredientsList = binding.chosenIngredients
+                val ingredientsList = binding.editChosenIngredients
                 ingredientsList.layoutManager = GridLayoutManager(
-                    this@RecipeRegisterForm, GridLayoutManager.VERTICAL)
+                    this@RecipeEditForm, GridLayoutManager.VERTICAL)
                 ingredientsList.adapter = adapter
                 dialog.dismiss()
             }
@@ -121,8 +122,8 @@ class RecipeRegisterForm : AppCompatActivity() {
     }
 
     private fun saveRecipe() {
-        val name = binding.registerRecipeNameEdit.text.toString()
-        val description = binding.registerRecipeDescriptionEdit.text.toString()
+        val name = binding.editRecipeNameEdit.text.toString()
+        val description = binding.editRecipeDescriptionEdit.text.toString()
         val yield = binding.registerRecipeYieldEdit.text.toString().toInt()
         val ingredients = chosenIngredients
         var price = 0.0
@@ -151,7 +152,7 @@ class RecipeRegisterForm : AppCompatActivity() {
             val scope = MainScope()
             scope.launch {
                 withContext(Dispatchers.IO) {
-                   dao.insertRecipe(crossRefs, recipe)
+                    dao.editOne(recipe, crossRefs)
                 }
             }
 
@@ -168,4 +169,5 @@ class RecipeRegisterForm : AppCompatActivity() {
                 recipeWithIngredients.recipe.cost > 0 && recipeWithIngredients.recipe.yield > 0 &&
                 recipeWithIngredients.recipe.imgUri != ""
     }
+
 }
