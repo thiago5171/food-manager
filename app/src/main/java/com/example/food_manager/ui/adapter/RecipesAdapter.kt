@@ -20,6 +20,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import android.content.Intent
 import androidx.core.app.ActivityOptionsCompat
+import com.example.food_manager.ui.recipe.RecipeEditForm
 import com.example.food_manager.ui.recipe.RecipeRegisterForm
 
 
@@ -64,9 +65,13 @@ class RecipesAdapter (val recipes: ArrayList<Recipe>, val recipesDAO: RecipeWith
             val scope = MainScope()
             scope.launch {
                 withContext(Dispatchers.IO) {
-                    val  result1 =recipesDAO.findFullRecipeById(recipes[position].id)
-
-                    println("\n \n\n\n $result1 \n\n\n\n" )
+                    val  item = recipesDAO.findFullRecipeById(recipes[position].id)
+//                    val nameEdit = view.findViewById<TextView>(R.id.edit_recipe_name_edit)
+//                    val descriptionEdit = view.findViewById<TextView>(R.id.edit_recipe_description_edit)
+//                    val yieldEdit = view.findViewById<TextView>(R.id.edit_recipe_yield_field)
+//                    nameEdit.text = item.recipe.name
+//                    descriptionEdit.text = item.recipe.description
+//                    yieldEdit.text = item.recipe.yield.toString()
 
                     recipes.clear()
                 }
