@@ -23,11 +23,18 @@ interface RecipeWithIngredientsDAO {
         }
     }
 
+
     @Query("select * from recipe")
     fun findAllWithNoIngredients(): List<Recipe>
 
     @Delete
     fun deleteOne(recipe: Recipe)
+
+    @Transaction
+    fun editOne(recipe:Recipe, crossRefs: List<RecipeIngredientCrossRef>) {
+        deleteOne(recipe)
+        insertRecipe(crossRefs,  recipe)
+    }
 
     @Query("select * from Ingredient")
     fun findRecipesByIda(): List<Ingredient>

@@ -16,6 +16,13 @@
         android:theme="@style/Theme.Foodmanager"
         tools:targetApi="31">
         <activity
+            android:name=".ui.recipe.RecipeEditForm"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".SingleIncome"
             android:exported="false">
             <meta-data
