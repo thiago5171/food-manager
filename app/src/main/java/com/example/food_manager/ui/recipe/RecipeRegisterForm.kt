@@ -151,10 +151,7 @@ class RecipeRegisterForm : AppCompatActivity() {
             val scope = MainScope()
             scope.launch {
                 withContext(Dispatchers.IO) {
-                    dao.save(recipe)
-                    for (crossRef in crossRefs) {
-                        dao.saveIngredient(crossRef)
-                    }
+                   dao.insertRecipe(crossRefs, recipe)
                 }
             }
 
