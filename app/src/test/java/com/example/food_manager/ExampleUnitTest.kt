@@ -28,47 +28,49 @@ class ExampleUnitTest {
     }
 
     @Test
-    fun success_get_item_id(){
+    fun success_get_item_id() {
         recipes.add(
             Recipe(
                 id = 0L,
                 name = "Torta de frango sem queijoTorta de frango sem queijoTorta de frango sem queijo",
                 description = "Especial do artur corno",
                 cost = 24.00,
-                yield = 1
+                yield = 1,
+                imgUri = ""
             )
         )
-        val expected : Long = 0
+        val expected: Long = 0
         val actual = recipes[0].id
         assertEquals(expected, actual)
 
     }
 
     @Test
-    fun failed_get_item_id(){
-        assertNotEquals( 1, adapter.getItemId(0) )
+    fun failed_get_item_id() {
+        assertNotEquals(1, adapter.getItemId(0))
     }
 
 
     @Test
-    fun success_get_count(){
+    fun success_get_count() {
         recipes.add(
             Recipe(
                 name = "Torta de frango sem queijoTorta de frango sem queijoTorta de frango sem queijo",
                 description = "Especial do artur corno",
                 cost = 24.00,
-                yield = 1
+                yield = 1,
+                imgUri = ""
             )
         )
         val expected = 1
-        assertEquals(expected,adapter.itemCount )
+        assertEquals(expected, adapter.itemCount)
 
     }
 
     @Test
-    fun failed_get_count(){
+    fun failed_get_count() {
         val expected = 1
-        assertNotEquals(expected,adapter.itemCount )
+        assertNotEquals(expected, adapter.itemCount)
 
     }
 
