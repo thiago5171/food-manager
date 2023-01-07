@@ -7,7 +7,7 @@
     android:background="@color/background"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent"
-    tools:context=".ui.recipe.ingredient.SingleIngredient">
+    tools:context=".ui.recipe.ingredient.list.SingleIngredientToSelect">
 
     <LinearLayout
         android:layout_width="365dp"

@@ -1,8 +1,8 @@
 package com.example.food_manager.ui.expense.list
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.food_manager.data.DatabaseHelper
 import com.example.food_manager.databinding.ActivityExpenseListBinding
@@ -14,7 +14,7 @@ import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class ExpenseList : Activity() {
+class ExpenseList : AppCompatActivity() {
     private val binding by lazy {
         ActivityExpenseListBinding.inflate(layoutInflater)
     }

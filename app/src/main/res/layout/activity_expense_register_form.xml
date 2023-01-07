@@ -40,6 +40,7 @@
         android:textColorHint="@color/black"
         app:helperText="@string/required"
         app:helperTextTextColor="@color/trendingStart"
+        app:boxStrokeColor="@color/black"
         app:hintTextColor="@color/accent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

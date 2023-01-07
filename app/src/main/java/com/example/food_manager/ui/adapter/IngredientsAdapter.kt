@@ -25,7 +25,7 @@ class IngredientsAdapter(private val ingredients: ArrayList<Ingredient>)
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(viewGroup.context)
-            .inflate(R.layout.activity_single_ingredient, viewGroup, false)
+            .inflate(R.layout.activity_single_ingredient_to_select, viewGroup, false)
 
         return ViewHolder(view)
     }
