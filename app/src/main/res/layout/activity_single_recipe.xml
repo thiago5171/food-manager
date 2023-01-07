@@ -93,34 +93,6 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/recipe_name" />
 
-                <TextView
-                    android:id="@+id/recipe_cost"
-                    android:layout_width="107dp"
-                    android:layout_height="0dp"
-                    android:layout_marginTop="76dp"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/inter_bold"
-                    android:textColor="#FE7E62"
-                    android:textSize="14sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.011"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/recipe_yield"
-                    android:layout_width="107dp"
-                    android:layout_height="0dp"
-                    android:layout_marginTop="76dp"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/inter_bold"
-                    android:textColor="#FE7E62"
-                    android:textSize="14sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.011"
-                    app:layout_constraintStart_toEndOf="@id/recipe_cost"
-                    app:layout_constraintTop_toTopOf="parent" />
-
                 <ImageView
                     android:id="@+id/delete_button"
                     android:layout_width="wrap_content"
@@ -130,11 +102,47 @@
                     android:adjustViewBounds="false"
                     android:background="@android:color/transparent"
                     android:src="@android:drawable/ic_menu_delete"
+                    android:layout_gravity="end"
                     android:tintMode="src_in"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/recipe_description"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:tint="#7C0000"
+                    app:tint="@color/wine"
                     android:contentDescription="@string/cancel_msg" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="vertical"
+                    app:layout_constraintTop_toBottomOf="@id/recipe_description"
+                >
+                    <TextView
+                        android:id="@+id/recipe_cost"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/alata"
+                        android:textColor="@color/trendingEnd"
+                        android:textSize="14sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.011"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/recipe_yield"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/alata"
+                        android:textColor="@color/trendingEnd"
+                        android:textSize="14sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.011"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/recipe_cost" />
+                </LinearLayout>
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
