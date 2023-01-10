@@ -7,8 +7,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.example.food_manager.R
 import com.example.food_manager.data.DatabaseHelper
 import com.example.food_manager.databinding.ActivityIncomeRegisterFormBinding
 import com.example.food_manager.domain.income.Income
@@ -26,6 +28,17 @@ class IncomeRegisterForm : AppCompatActivity() {
 
     private val getContent = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
         imageUri = uri
+        if (uri != null) {
+            val pickImageButton = binding.pickIncomeImageAction
+            val newIcon = AppCompatResources.getDrawable(this,
+                R.drawable.ic_baseline_check_circle_outline_24)
+            pickImageButton.setCompoundDrawablesWithIntrinsicBounds(null, null,
+                newIcon, null)
+            pickImageButton.text = getString(R.string.image_was_selected)
+            pickImageButton.setTextColor(
+                AppCompatResources.getColorStateList(this,
+                R.color.trendingStart))
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,10 +46,8 @@ class IncomeRegisterForm : AppCompatActivity() {
         setContentView(binding.root)
 
         val pickImageButton = binding.pickIncomeImageAction
-
         pickImageButton.setOnClickListener {
             pickImage()
-            pickImageButton.text = ""
         }
 
         val saveIncomeButton = binding.saveIncomeBtn
@@ -68,7 +79,7 @@ class IncomeRegisterForm : AppCompatActivity() {
     private fun saveIncome() {
         val name = binding.registerIncomeNameEdit.text.toString()
         val description = binding.registerRecipeDescriptionEdit.text.toString()
-        val amount = binding.registerIncomeAmountEdit.text.toString().toDouble()
+        val amount = binding.registerIncomeAmountEdit.text.toString().replace(',', '.').toDouble()
         val imgUri = imageUri.toString()
 
         val income = Income(

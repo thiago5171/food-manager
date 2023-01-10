@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
@@ -34,6 +35,16 @@ class RecipeRegisterForm : AppCompatActivity() {
 
     private val getContent = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
         imageUri = uri
+        if (uri != null) {
+            val pickImageButton = binding.pickRecipeImageAction
+            val newIcon = AppCompatResources.getDrawable(this,
+                R.drawable.ic_baseline_check_circle_outline_24)
+            pickImageButton.setCompoundDrawablesWithIntrinsicBounds(null, null,
+                newIcon, null)
+            pickImageButton.text = getString(R.string.image_was_selected)
+            pickImageButton.setTextColor(AppCompatResources.getColorStateList(this,
+                R.color.trendingStart))
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,11 +52,8 @@ class RecipeRegisterForm : AppCompatActivity() {
         setContentView(binding.root)
 
         val pickImageButton = binding.pickRecipeImageAction
-
         pickImageButton.setOnClickListener {
             pickImage()
-            pickImageButton.text = ""
-
         }
 
         val selectIngredients = binding.selectIngredients

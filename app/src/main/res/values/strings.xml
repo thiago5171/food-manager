@@ -33,4 +33,5 @@
     <string name="edit_recipe">editar receita</string>
     <string name="register_income">Cadastro de entrada</string>
     <string name="amount">Valor</string>
+    <string name="image_was_selected">"Imagem selecionada"</string>
 </resources>
