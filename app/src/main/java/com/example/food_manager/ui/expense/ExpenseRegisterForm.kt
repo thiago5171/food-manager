@@ -23,34 +23,42 @@ class ExpenseRegisterForm : AppCompatActivity() {
         setContentView(binding.root)
 
         val saveExpenseButton = binding.saveExpenseBtn
-
         saveExpenseButton.setOnClickListener {
-            val name = binding.registerExpenseNameEdit.text.toString()
-            val description = binding.registerExpenseDescriptionEdit.text.toString()
-            val price = binding.registerExpensePriceEdit.text.toString().replace(',', '.').toDouble()
+            saveExpense()
+        }
 
-            val expense = Expense(
-                name = name,
-                description = description,
-                price = price
-            )
+        val cancelButton = binding.cancelExpenseRegisterBtn
+        cancelButton.setOnClickListener {
+            finish()
+        }
+    }
 
-            if (expenseIsValid(expense)) {
-                val dao = DatabaseHelper.getInstance(this).expenseDAO()
+    private fun saveExpense() {
+        val name = binding.registerExpenseNameEdit.text.toString()
+        val description = binding.registerExpenseDescriptionEdit.text.toString()
+        val price = binding.registerExpensePriceEdit.text.toString().replace(',', '.').toDouble()
 
-                val scope = MainScope()
-                scope.launch {
-                    withContext(Dispatchers.IO) {
-                        dao.save(expense)
-                    }
+        val expense = Expense(
+            name = name,
+            description = description,
+            price = price
+        )
+
+        if (expenseIsValid(expense)) {
+            val dao = DatabaseHelper.getInstance(this).expenseDAO()
+
+            val scope = MainScope()
+            scope.launch {
+                withContext(Dispatchers.IO) {
+                    dao.save(expense)
                 }
-
-                Toast.makeText(this, "salvo com sucesso", Toast.LENGTH_SHORT).show()
-
-                finish()
-            } else {
-                Toast.makeText(this, "algo deu errado", Toast.LENGTH_SHORT).show()
             }
+
+            Toast.makeText(this, "salvo com sucesso", Toast.LENGTH_SHORT).show()
+
+            finish()
+        } else {
+            Toast.makeText(this, "algo deu errado", Toast.LENGTH_SHORT).show()
         }
     }
 

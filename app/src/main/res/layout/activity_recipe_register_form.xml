@@ -219,7 +219,7 @@
                 tools:layout_editor_absoluteX="16dp">
 
                 <Button
-                    android:id="@+id/cancel_ingredient_register_btn"
+                    android:id="@+id/cancel_recipe_register_btn"
                     style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
                     android:layout_width="180dp"
                     android:layout_height="wrap_content"
@@ -241,7 +241,7 @@
                     android:textAllCaps="false"
                     android:textColor="@color/white"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/cancel_ingredient_register_btn"
+                    app:layout_constraintStart_toEndOf="@id/cancel_recipe_register_btn"
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>

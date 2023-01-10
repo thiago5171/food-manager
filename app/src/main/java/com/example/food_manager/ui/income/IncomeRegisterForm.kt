@@ -37,12 +37,16 @@ class IncomeRegisterForm : AppCompatActivity() {
         pickImageButton.setOnClickListener {
             pickImage()
             pickImageButton.text = ""
-
         }
 
         val saveIncomeButton = binding.saveIncomeBtn
         saveIncomeButton.setOnClickListener {
             saveIncome()
+        }
+
+        val cancelButton = binding.cancelIncomeRegisterBtn
+        cancelButton.setOnClickListener {
+            finish()
         }
     }
 

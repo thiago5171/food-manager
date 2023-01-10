@@ -57,6 +57,11 @@ class RecipeRegisterForm : AppCompatActivity() {
         saveRecipeButton.setOnClickListener {
             saveRecipe()
         }
+
+        val cancelButton = binding.cancelRecipeRegisterBtn
+        cancelButton.setOnClickListener {
+            finish()
+        }
     }
 
     private fun pickImage() {
