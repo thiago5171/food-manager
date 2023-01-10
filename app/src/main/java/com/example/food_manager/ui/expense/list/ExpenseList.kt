@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.food_manager.data.DatabaseHelper
 import com.example.food_manager.databinding.ActivityExpenseListBinding
-import com.example.food_manager.domain.Expense.Expense
+import com.example.food_manager.domain.Expense
 import com.example.food_manager.ui.adapter.ExpensesAdapter
 import com.example.food_manager.ui.expense.ExpenseRegisterForm
 import kotlinx.coroutines.Dispatchers

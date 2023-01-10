@@ -8,11 +8,11 @@ import com.example.food_manager.data.dao.ExpenseDAO
 import com.example.food_manager.data.dao.IncomeDAO
 import com.example.food_manager.data.dao.IngredientDAO
 import com.example.food_manager.data.dao.RecipeWithIngredientsDAO
-import com.example.food_manager.domain.Expense.Expense
-import com.example.food_manager.domain.income.Income
-import com.example.food_manager.domain.recipe.Ingredient
-import com.example.food_manager.domain.recipe.Recipe
-import com.example.food_manager.domain.recipe.RecipeIngredientCrossRef
+import com.example.food_manager.domain.Expense
+import com.example.food_manager.domain.Income
+import com.example.food_manager.domain.Ingredient
+import com.example.food_manager.domain.Recipe
+import com.example.food_manager.domain.RecipeIngredientCrossRef
 
 @Database(entities = [Recipe::class, Ingredient::class, RecipeIngredientCrossRef::class, Expense::class, Income::class], version = 1)
 abstract class DatabaseHelper : RoomDatabase() {

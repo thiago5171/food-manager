@@ -6,7 +6,7 @@ import android.os.Bundle
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.food_manager.data.DatabaseHelper
 import com.example.food_manager.databinding.ActivityFinancialIncomeListBinding
-import com.example.food_manager.domain.income.Income
+import com.example.food_manager.domain.Income
 import com.example.food_manager.ui.adapter.IncomesAdapter
 import com.example.food_manager.ui.income.IncomeRegisterForm
 import kotlinx.coroutines.Dispatchers

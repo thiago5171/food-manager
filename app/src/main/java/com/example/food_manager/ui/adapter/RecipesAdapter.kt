@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.food_manager.R
 import com.example.food_manager.data.dao.RecipeWithIngredientsDAO
-import com.example.food_manager.domain.recipe.Recipe
+import com.example.food_manager.domain.Recipe
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch

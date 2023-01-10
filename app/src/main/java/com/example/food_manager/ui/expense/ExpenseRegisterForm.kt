@@ -6,7 +6,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.food_manager.data.DatabaseHelper
 import com.example.food_manager.databinding.ActivityExpenseRegisterFormBinding
-import com.example.food_manager.domain.Expense.Expense
+import com.example.food_manager.domain.Expense
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch

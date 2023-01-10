@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.food_manager.R
 import com.example.food_manager.data.dao.IncomeDAO
-import com.example.food_manager.domain.income.Income
+import com.example.food_manager.domain.Income
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch

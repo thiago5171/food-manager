@@ -6,7 +6,7 @@ import android.os.Bundle
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.food_manager.data.DatabaseHelper
 import com.example.food_manager.databinding.ActivityRecipeListBinding
-import com.example.food_manager.domain.recipe.Recipe
+import com.example.food_manager.domain.Recipe
 import com.example.food_manager.ui.adapter.RecipesAdapter
 import com.example.food_manager.ui.recipe.RecipeRegisterForm
 import kotlinx.coroutines.Dispatchers

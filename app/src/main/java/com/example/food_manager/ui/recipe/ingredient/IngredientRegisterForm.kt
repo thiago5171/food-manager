@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.widget.Toast
 import com.example.food_manager.data.DatabaseHelper
 import com.example.food_manager.databinding.ActivityIngredientRegisterFormBinding
-import com.example.food_manager.domain.recipe.Ingredient
+import com.example.food_manager.domain.Ingredient
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch

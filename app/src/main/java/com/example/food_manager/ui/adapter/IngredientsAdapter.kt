@@ -9,7 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.food_manager.R
 import com.example.food_manager.data.dao.IngredientDAO
-import com.example.food_manager.domain.recipe.Ingredient
+import com.example.food_manager.domain.Ingredient
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch

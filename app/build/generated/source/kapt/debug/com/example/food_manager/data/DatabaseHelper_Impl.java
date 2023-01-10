@@ -117,7 +117,7 @@ public final class DatabaseHelper_Impl extends DatabaseHelper {
         final TableInfo _infoRecipe = new TableInfo("Recipe", _columnsRecipe, _foreignKeysRecipe, _indicesRecipe);
         final TableInfo _existingRecipe = TableInfo.read(_db, "Recipe");
         if (! _infoRecipe.equals(_existingRecipe)) {
-          return new RoomOpenHelper.ValidationResult(false, "Recipe(com.example.food_manager.domain.recipe.Recipe).\n"
+          return new RoomOpenHelper.ValidationResult(false, "Recipe(com.example.food_manager.domain.Recipe).\n"
                   + " Expected:\n" + _infoRecipe + "\n"
                   + " Found:\n" + _existingRecipe);
         }
@@ -133,7 +133,7 @@ public final class DatabaseHelper_Impl extends DatabaseHelper {
         final TableInfo _infoIngredient = new TableInfo("Ingredient", _columnsIngredient, _foreignKeysIngredient, _indicesIngredient);
         final TableInfo _existingIngredient = TableInfo.read(_db, "Ingredient");
         if (! _infoIngredient.equals(_existingIngredient)) {
-          return new RoomOpenHelper.ValidationResult(false, "Ingredient(com.example.food_manager.domain.recipe.Ingredient).\n"
+          return new RoomOpenHelper.ValidationResult(false, "Ingredient(com.example.food_manager.domain.Ingredient).\n"
                   + " Expected:\n" + _infoIngredient + "\n"
                   + " Found:\n" + _existingIngredient);
         }
@@ -145,7 +145,7 @@ public final class DatabaseHelper_Impl extends DatabaseHelper {
         final TableInfo _infoRecipeIngredientCrossRef = new TableInfo("RecipeIngredientCrossRef", _columnsRecipeIngredientCrossRef, _foreignKeysRecipeIngredientCrossRef, _indicesRecipeIngredientCrossRef);
         final TableInfo _existingRecipeIngredientCrossRef = TableInfo.read(_db, "RecipeIngredientCrossRef");
         if (! _infoRecipeIngredientCrossRef.equals(_existingRecipeIngredientCrossRef)) {
-          return new RoomOpenHelper.ValidationResult(false, "RecipeIngredientCrossRef(com.example.food_manager.domain.recipe.RecipeIngredientCrossRef).\n"
+          return new RoomOpenHelper.ValidationResult(false, "RecipeIngredientCrossRef(com.example.food_manager.domain.RecipeIngredientCrossRef).\n"
                   + " Expected:\n" + _infoRecipeIngredientCrossRef + "\n"
                   + " Found:\n" + _existingRecipeIngredientCrossRef);
         }
@@ -159,7 +159,7 @@ public final class DatabaseHelper_Impl extends DatabaseHelper {
         final TableInfo _infoExpense = new TableInfo("Expense", _columnsExpense, _foreignKeysExpense, _indicesExpense);
         final TableInfo _existingExpense = TableInfo.read(_db, "Expense");
         if (! _infoExpense.equals(_existingExpense)) {
-          return new RoomOpenHelper.ValidationResult(false, "Expense(com.example.food_manager.domain.Expense.Expense).\n"
+          return new RoomOpenHelper.ValidationResult(false, "Expense(com.example.food_manager.domain.Expense).\n"
                   + " Expected:\n" + _infoExpense + "\n"
                   + " Found:\n" + _existingExpense);
         }
@@ -174,7 +174,7 @@ public final class DatabaseHelper_Impl extends DatabaseHelper {
         final TableInfo _infoIncome = new TableInfo("Income", _columnsIncome, _foreignKeysIncome, _indicesIncome);
         final TableInfo _existingIncome = TableInfo.read(_db, "Income");
         if (! _infoIncome.equals(_existingIncome)) {
-          return new RoomOpenHelper.ValidationResult(false, "Income(com.example.food_manager.domain.income.Income).\n"
+          return new RoomOpenHelper.ValidationResult(false, "Income(com.example.food_manager.domain.Income).\n"
                   + " Expected:\n" + _infoIncome + "\n"
                   + " Found:\n" + _existingIncome);
         }

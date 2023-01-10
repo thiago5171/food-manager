@@ -7,7 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.food_manager.R
-import com.example.food_manager.domain.recipe.Ingredient
+import com.example.food_manager.domain.Ingredient
 
 class IngredientsToSelectAdapter(private val ingredients: ArrayList<Ingredient>)
     : RecyclerView.Adapter<IngredientsToSelectAdapter.ViewHolder>() {

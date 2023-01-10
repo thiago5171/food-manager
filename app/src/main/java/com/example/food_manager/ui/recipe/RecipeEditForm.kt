@@ -14,10 +14,10 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.example.food_manager.R
 import com.example.food_manager.data.DatabaseHelper
 import com.example.food_manager.databinding.ActivityRecipeEditFormBinding
-import com.example.food_manager.domain.recipe.Ingredient
-import com.example.food_manager.domain.recipe.Recipe
-import com.example.food_manager.domain.recipe.RecipeIngredientCrossRef
-import com.example.food_manager.domain.recipe.RecipeWithIngredients
+import com.example.food_manager.domain.Ingredient
+import com.example.food_manager.domain.Recipe
+import com.example.food_manager.domain.RecipeIngredientCrossRef
+import com.example.food_manager.domain.RecipeWithIngredients
 import com.google.android.material.textfield.TextInputEditText
 import com.example.food_manager.ui.adapter.IngredientsToSelectAdapter
 import kotlinx.coroutines.Dispatchers

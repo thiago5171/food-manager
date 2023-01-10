@@ -13,7 +13,7 @@ import androidx.core.content.ContextCompat
 import com.example.food_manager.R
 import com.example.food_manager.data.DatabaseHelper
 import com.example.food_manager.databinding.ActivityIncomeRegisterFormBinding
-import com.example.food_manager.domain.income.Income
+import com.example.food_manager.domain.Income
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch

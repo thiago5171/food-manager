@@ -1,5 +1,6 @@
 package com.example.food_manager.ui.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,7 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.food_manager.R
 import com.example.food_manager.data.dao.ExpenseDAO
-import com.example.food_manager.domain.Expense.Expense
+import com.example.food_manager.domain.Expense
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
@@ -37,6 +38,7 @@ class ExpensesAdapter(private val expenses: ArrayList<Expense>, private val expe
         return ViewHolder(view)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
         viewHolder.nameView.text = expenses[position].name
         viewHolder.priceView.text = "R$${expenses[position].price}"
