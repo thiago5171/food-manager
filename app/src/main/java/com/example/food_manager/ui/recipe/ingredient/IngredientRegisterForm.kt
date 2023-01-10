@@ -21,9 +21,13 @@ class IngredientRegisterForm : AppCompatActivity() {
         setContentView(binding.root)
 
         val saveIngredientButton = binding.saveIngredientBtn
-
         saveIngredientButton.setOnClickListener {
             saveIngredient()
+        }
+
+        val cancelButton = binding.cancelIngredientRegisterBtn
+        cancelButton.setOnClickListener {
+            finish()
         }
     }
 
