@@ -23,6 +23,13 @@
                 android:value="" />
         </activity>
         <activity
+            android:name=".ui.income.IncomeRegisterForm"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".ui.recipe.ingredient.list.IngredientList"
             android:exported="false">
             <meta-data
