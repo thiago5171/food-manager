@@ -29,7 +29,7 @@ class Main : AppCompatActivity() {
             startActivity(intent)
         }
 
-        val expenseLayout = findViewById<LinearLayout>(R.id.finances)
+        val expenseLayout = binding.finances
         expenseLayout.setOnClickListener {
             val intent = Intent(this, Finances::class.java)
             startActivity(intent)
