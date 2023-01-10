@@ -2,7 +2,7 @@ package com.example.food_manager
 
 import android.content.Context
 import com.example.food_manager.data.DatabaseHelper
-import com.example.food_manager.domain.recipe.Recipe
+import com.example.food_manager.domain.Recipe
 import com.example.food_manager.ui.adapter.RecipesAdapter
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotEquals

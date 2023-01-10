@@ -1,15 +1,14 @@
-package com.example.food_manager.domain.recipe
+package com.example.food_manager.domain
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import java.io.Serializable
 
 @Entity
-data class Ingredient(
+data class Income(
     @PrimaryKey(autoGenerate = true) val id : Long = 0L,
     val name: String,
     val description: String,
-    val quantity: Int,
-    val unitMeasurement: String,
-    val price: Double
-) : Serializable
+    val amount: Double,
+    val imgUri: String
+): Serializable

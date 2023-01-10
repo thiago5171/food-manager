@@ -1,7 +1,7 @@
 package com.example.food_manager.data.dao
 
 import androidx.room.*
-import com.example.food_manager.domain.Expense.Expense
+import com.example.food_manager.domain.Expense
 
 @Dao
 interface ExpenseDAO {

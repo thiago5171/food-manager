@@ -1,10 +1,10 @@
 package com.example.food_manager.data.dao
 
 import androidx.room.*
-import com.example.food_manager.domain.recipe.Ingredient
-import com.example.food_manager.domain.recipe.Recipe
-import com.example.food_manager.domain.recipe.RecipeIngredientCrossRef
-import com.example.food_manager.domain.recipe.RecipeWithIngredients
+import com.example.food_manager.domain.Ingredient
+import com.example.food_manager.domain.Recipe
+import com.example.food_manager.domain.RecipeIngredientCrossRef
+import com.example.food_manager.domain.RecipeWithIngredients
 
 @Dao
 interface RecipeWithIngredientsDAO {
@@ -30,14 +30,17 @@ interface RecipeWithIngredientsDAO {
     @Delete
     fun deleteOne(recipe: Recipe)
 
+    @Query("delete from ingredient where id = :id")
+    fun delete(id: Long)
+
     @Transaction
-    fun editOne(recipe:Recipe, crossRefs: List<RecipeIngredientCrossRef>) {
-        deleteOne(recipe)
+    fun editOne(recipe: Recipe, crossRefs: List<RecipeIngredientCrossRef>) {
+        delete(recipe.id)
         insertRecipe(crossRefs,  recipe)
     }
 
     @Query("select * from Ingredient")
-    fun findRecipesByIda(): List<Ingredient>
+    fun findRecipesById(): List<Ingredient>
 
     @Query("select * from Ingredient inner join RecipeIngredientCrossRef r on r.ingredientID = id where recipeID = :id"   )
     fun findIngredientsById(id: Long): List<Ingredient>
@@ -45,7 +48,7 @@ interface RecipeWithIngredientsDAO {
     @Query("select * from Recipe where id = :id")
     fun findRecipesByIdb(id: Long): Recipe
 
-    fun findFullRecipeById(id: Long): RecipeWithIngredients{
+    fun findFullRecipeById(id: Long): RecipeWithIngredients {
         return  RecipeWithIngredients(findRecipesByIdb(id),findIngredientsById(id))
     }
 }

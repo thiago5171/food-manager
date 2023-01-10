@@ -1,4 +1,4 @@
-package com.example.food_manager.domain.recipe
+package com.example.food_manager.domain
 
 import androidx.room.Embedded
 import androidx.room.Entity
@@ -14,4 +14,4 @@ data class RecipeWithIngredients(
         associateBy = Junction(RecipeIngredientCrossRef::class)
     )
     val ingredients: List<Ingredient>
-)
+) : java.io.Serializable

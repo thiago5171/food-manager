@@ -1,4 +1,4 @@
-package com.example.food_manager.domain.recipe
+package com.example.food_manager.domain
 
 import androidx.room.Entity
 import java.io.Serializable

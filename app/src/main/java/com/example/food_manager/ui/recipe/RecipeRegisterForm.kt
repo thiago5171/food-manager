@@ -8,17 +8,18 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.food_manager.R
 import com.example.food_manager.data.DatabaseHelper
 import com.example.food_manager.databinding.ActivityRecipeRegisterFormBinding
-import com.example.food_manager.domain.recipe.Ingredient
-import com.example.food_manager.domain.recipe.Recipe
-import com.example.food_manager.domain.recipe.RecipeIngredientCrossRef
-import com.example.food_manager.domain.recipe.RecipeWithIngredients
-import com.example.food_manager.ui.adapter.IngredientsAdapter
+import com.example.food_manager.domain.Ingredient
+import com.example.food_manager.domain.Recipe
+import com.example.food_manager.domain.RecipeIngredientCrossRef
+import com.example.food_manager.domain.RecipeWithIngredients
+import com.example.food_manager.ui.adapter.IngredientsToSelectAdapter
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
@@ -34,6 +35,16 @@ class RecipeRegisterForm : AppCompatActivity() {
 
     private val getContent = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
         imageUri = uri
+        if (uri != null) {
+            val pickImageButton = binding.pickRecipeImageAction
+            val newIcon = AppCompatResources.getDrawable(this,
+                R.drawable.ic_baseline_check_circle_outline_24)
+            pickImageButton.setCompoundDrawablesWithIntrinsicBounds(null, null,
+                newIcon, null)
+            pickImageButton.text = getString(R.string.image_was_selected)
+            pickImageButton.setTextColor(AppCompatResources.getColorStateList(this,
+                R.color.trendingStart))
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,11 +52,8 @@ class RecipeRegisterForm : AppCompatActivity() {
         setContentView(binding.root)
 
         val pickImageButton = binding.pickRecipeImageAction
-
         pickImageButton.setOnClickListener {
             pickImage()
-            pickImageButton.text = ""
-
         }
 
         val selectIngredients = binding.selectIngredients
@@ -56,6 +64,11 @@ class RecipeRegisterForm : AppCompatActivity() {
         val saveRecipeButton = binding.saveRecipeBtn
         saveRecipeButton.setOnClickListener {
             saveRecipe()
+        }
+
+        val cancelButton = binding.cancelRecipeRegisterBtn
+        cancelButton.setOnClickListener {
+            finish()
         }
     }
 
@@ -106,7 +119,7 @@ class RecipeRegisterForm : AppCompatActivity() {
             }
 
             builder.setPositiveButton("OK") { dialog, _ ->
-                val adapter = IngredientsAdapter(chosenIngredients)
+                val adapter = IngredientsToSelectAdapter(chosenIngredients)
                 val ingredientsList = binding.chosenIngredients
                 ingredientsList.layoutManager = GridLayoutManager(
                     this@RecipeRegisterForm, GridLayoutManager.VERTICAL)

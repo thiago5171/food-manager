@@ -8,7 +8,7 @@
     android:outlineProvider="none"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent"
-    tools:context=".ui.income.list.SingleIncome">
+    tools:context=".ui.recipe.list.SingleRecipe">
 
     <LinearLayout
         android:layout_width="0dp"
@@ -20,48 +20,17 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
-            android:layout_width="133dp"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginBottom="15dp"
-                app:cardBackgroundColor="@android:color/transparent"
-                app:cardCornerRadius="18dp"
-                tools:visibility="visible">
-
-                <ImageView
-                    android:id="@+id/income_image"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:adjustViewBounds="false"
-                    android:background="@android:color/transparent"
-                    app:srcCompat="@drawable/ic_launcher_foreground"
-                    tools:ignore="ImageContrastCheck"
-                    tools:srcCompat="?attr/actionBarDivider"
-                    android:contentDescription="@string/recipes" />
-
-            </androidx.cardview.widget.CardView>
-        </LinearLayout>
-
-        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:paddingStart="0dp"
-            android:paddingEnd="5dp">
+            android:padding="15dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/income_name"
+                    android:id="@+id/single_ingredient_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -76,7 +45,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/income_description"
+                    android:id="@+id/single_ingredient_description"
                     android:layout_width="0dp"
                     android:layout_height="24dp"
                     android:layout_marginStart="2dp"
@@ -91,10 +60,10 @@
                     app:autoSizeMinTextSize="16sp"
                     app:autoSizeTextType="none"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/income_name" />
+                    app:layout_constraintTop_toBottomOf="@+id/single_ingredient_name" />
 
                 <ImageView
-                    android:id="@+id/income_delete_button"
+                    android:id="@+id/delete_ingredient_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="16dp"
@@ -104,7 +73,7 @@
                     android:src="@android:drawable/ic_menu_delete"
                     android:layout_gravity="end"
                     android:tintMode="src_in"
-                    app:layout_constraintTop_toBottomOf="@id/income_description"
+                    app:layout_constraintTop_toBottomOf="@id/single_ingredient_description"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:tint="@color/wine"
                     android:contentDescription="@string/cancel_msg" />
@@ -113,21 +82,28 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:orientation="vertical"
-                    app:layout_constraintTop_toBottomOf="@id/income_description"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toBottomOf="@id/single_ingredient_description"
                     >
                     <TextView
-                        android:id="@+id/income_amount"
+                        android:id="@+id/single_ingredient_price"
                         android:layout_width="match_parent"
-                        android:layout_height="0dp"
+                        android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:fontFamily="@font/alata"
                         android:textColor="@color/trendingEnd"
                         android:textSize="14sp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.011"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintHorizontal_bias="0.011" />
+
+                    <TextView
+                        android:id="@+id/single_ingredient_quantity_plus_unit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/alata"
+                        android:textColor="@color/trendingEnd"
+                        android:textSize="14sp"
+                        app:layout_constraintHorizontal_bias="0.011" />
                 </LinearLayout>
 
 

@@ -8,22 +8,20 @@
     tools:context=".ui.recipe.RecipeRegisterForm">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/edit_recipe_layout_header"
+        android:id="@+id/register_income_layout_header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/header_background"
         android:padding="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/edit_recipe_title"
+            android:id="@+id/register_income_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
             android:layout_marginTop="15dp"
-            android:text="@string/edit_recipe"
+            android:text="@string/register_income"
             android:textColor="@color/white"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -35,7 +33,7 @@
         android:overScrollMode="never"
         android:scrollbars="none"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/edit_recipe_layout_header"
+        app:layout_constraintTop_toBottomOf="@id/register_income_layout_header"
         >
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -44,7 +42,7 @@
             app:layout_constraintStart_toStartOf="parent"
             >
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/edit_pick_recipe_image_field"
+                android:id="@+id/pick_income_image_field"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -54,7 +52,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 >
                 <TextView
-                    android:id="@+id/edit_pick_recipe_image_action"
+                    android:id="@+id/pick_income_image_action"
                     android:background="@drawable/edit_box_background"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -71,7 +69,7 @@
                     app:strokeWidth="1dp"
                     app:drawableEndCompat="@drawable/ic_baseline_add_photo_alternate_24" />
                 <TextView
-                    android:id="@+id/edit_required_text_for_recipe_image"
+                    android:id="@+id/required_text_for_income_image"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingStart="15sp"
@@ -80,11 +78,11 @@
                     android:text="@string/required"
                     android:textColor="@color/trendingStart"
                     android:textSize="12.5sp"
-                    app:layout_constraintTop_toBottomOf="@id/edit_pick_recipe_image_action" />
+                    app:layout_constraintTop_toBottomOf="@id/pick_income_image_action" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/edit_recipe_name_field"
+                android:id="@+id/register_income_name_field"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -99,10 +97,10 @@
                 app:hintTextColor="@color/accent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/edit_pick_recipe_image_field">
+                app:layout_constraintTop_toBottomOf="@id/pick_income_image_field">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edit_recipe_name_edit"
+                    android:id="@+id/register_income_name_edit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"
@@ -111,7 +109,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/edit_recipe_description_field"
+                android:id="@+id/register_income_description_field"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -124,11 +122,11 @@
                 app:hintTextColor="@color/accent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/edit_recipe_name_field"
+                app:layout_constraintTop_toBottomOf="@id/register_income_name_field"
                 app:placeholderTextColor="@color/black">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edit_recipe_description_edit"
+                    android:id="@+id/register_recipe_description_edit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"
@@ -137,14 +135,14 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/edit_recipe_yield_field"
+                android:id="@+id/register_income_amount_field"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="24dp"
                 android:layout_marginEnd="16dp"
-                android:hint="@string/yield"
+                android:hint="@string/amount"
                 android:textColorHint="@color/black"
                 app:boxStrokeColor="@color/black"
                 app:helperText="@string/required"
@@ -152,92 +150,42 @@
                 app:hintTextColor="@color/accent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/edit_recipe_description_field">
+                app:layout_constraintTop_toBottomOf="@id/register_income_description_field">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/register_recipe_yield_edit"
+                    android:id="@+id/register_income_amount_edit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="number"
+                    android:inputType="numberDecimal"
+                    android:digits="0123456789.,"
                     android:textColor="@color/black" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
-
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/edit_recipe_ingredients_field"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="16dp"
-                app:layout_constraintTop_toBottomOf="@id/edit_recipe_yield_field"
-
-                app:layout_constraintBottom_toTopOf="@id/edit_chosen_ingredients"
-
-                >
-
-                <TextView
-                    android:id="@+id/edit_select_ingredients"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:background="@drawable/edit_box_background"
-                    android:drawablePadding="16dp"
-                    android:hint="@string/pick_ingredients"
-                    android:padding="14dp"
-                    android:textColorHint="@color/black"
-                    app:drawableEndCompat="@drawable/ic_baseline_arrow_drop_down_24"
-                    app:layout_constraintBottom_toTopOf="@id/edit_required_text" />
-
-                <TextView
-                    android:id="@+id/edit_required_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingStart="15sp"
-                    android:paddingTop="5sp"
-                    android:paddingEnd="12sp"
-                    android:text="@string/required"
-                    android:textColor="@color/trendingStart"
-                    android:textSize="12.5sp"
-                    app:layout_constraintTop_toBottomOf="@id/edit_select_ingredients" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.recyclerview.widget.RecyclerView
-                app:layout_constraintStart_toStartOf="parent"
-                android:id="@+id/edit_chosen_ingredients"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:flow_horizontalAlign="center"
-                app:layout_constraintBottom_toTopOf="@+id/edit_footer_buttons"
-                app:layout_constraintTop_toBottomOf="@+id/edit_recipe_ingredients_field"
-                >
-            </androidx.recyclerview.widget.RecyclerView>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/edit_footer_buttons"
+                android:id="@+id/footer_buttons"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-                app:layout_constraintTop_toBottomOf="@id/edit_chosen_ingredients"
+                app:layout_constraintTop_toBottomOf="@id/register_income_amount_field"
                 tools:layout_editor_absoluteX="16dp">
 
                 <Button
-                    android:id="@+id/edit_cancel_ingredient_register_btn"
+                    android:id="@+id/cancel_income_register_btn"
                     style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
                     android:layout_width="180dp"
                     android:layout_height="wrap_content"
                     android:text="@string/cancel_msg"
                     android:textAllCaps="false"
                     android:textColor="@color/trendingStart"
-                    app:layout_constraintEnd_toStartOf="@id/edit_save_recipe_btn"
+                    app:layout_constraintEnd_toStartOf="@id/save_income_btn"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:strokeColor="@color/trendingStart"
                     app:strokeWidth="2dp" />
 
                 <Button
-                    android:id="@+id/edit_save_recipe_btn"
+                    android:id="@+id/save_income_btn"
                     android:layout_width="180dp"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/trendingStart"
@@ -245,7 +193,7 @@
                     android:textAllCaps="false"
                     android:textColor="@color/white"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/edit_cancel_ingredient_register_btn"
+                    app:layout_constraintStart_toEndOf="@id/cancel_income_register_btn"
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>

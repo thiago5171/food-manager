@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.widget.Toast
 import com.example.food_manager.data.DatabaseHelper
 import com.example.food_manager.databinding.ActivityIngredientRegisterFormBinding
-import com.example.food_manager.domain.recipe.Ingredient
+import com.example.food_manager.domain.Ingredient
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
@@ -21,38 +21,46 @@ class IngredientRegisterForm : AppCompatActivity() {
         setContentView(binding.root)
 
         val saveIngredientButton = binding.saveIngredientBtn
-
         saveIngredientButton.setOnClickListener {
-            val name = binding.registerIngredientNameEdit.text.toString()
-            val description = binding.registerIngredientDescriptionEdit.text.toString()
-            val quantity = binding.registerIngredientQuantityEdit.text.toString().toInt()
-            val price = binding.registerIngredientPriceEdit.text.toString().replace(',', '.').toDouble()
-            val unitMeasurement = binding.registerIngredientUnitMeasurementEdit.text.toString()
+            saveIngredient()
+        }
 
-            val ingredient = Ingredient(
-                name = name,
-                description = description,
-                quantity = quantity,
-                price = price,
-                unitMeasurement = unitMeasurement
-            )
+        val cancelButton = binding.cancelIngredientRegisterBtn
+        cancelButton.setOnClickListener {
+            finish()
+        }
+    }
 
-            if (ingredientIsValid(ingredient)) {
-                val dao = DatabaseHelper.getInstance(this).ingredientDAO()
+    private fun saveIngredient() {
+        val name = binding.registerIngredientNameEdit.text.toString()
+        val description = binding.registerIngredientDescriptionEdit.text.toString()
+        val quantity = binding.registerIngredientQuantityEdit.text.toString().toInt()
+        val price = binding.registerIngredientPriceEdit.text.toString().replace(',', '.').toDouble()
+        val unitMeasurement = binding.registerIngredientUnitMeasurementEdit.text.toString()
 
-                val scope = MainScope()
-                scope.launch {
-                    withContext(Dispatchers.IO) {
-                        dao.save(ingredient)
-                    }
+        val ingredient = Ingredient(
+            name = name,
+            description = description,
+            quantity = quantity,
+            price = price,
+            unitMeasurement = unitMeasurement
+        )
+
+        if (ingredientIsValid(ingredient)) {
+            val dao = DatabaseHelper.getInstance(this).ingredientDAO()
+
+            val scope = MainScope()
+            scope.launch {
+                withContext(Dispatchers.IO) {
+                    dao.save(ingredient)
                 }
-
-                Toast.makeText(this, "salvo com sucesso", Toast.LENGTH_SHORT).show()
-
-                finish()
-            } else {
-                Toast.makeText(this, "algo deu errado", Toast.LENGTH_SHORT).show()
             }
+
+            Toast.makeText(this, "salvo com sucesso", Toast.LENGTH_SHORT).show()
+
+            finish()
+        } else {
+            Toast.makeText(this, "algo deu errado", Toast.LENGTH_SHORT).show()
         }
     }
 
