@@ -1,12 +1,14 @@
 package com.example.food_manager.ui.adapter
 
 import android.annotation.SuppressLint
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.food_manager.R
 import com.example.food_manager.data.dao.ExpenseDAO
 import com.example.food_manager.domain.Expense
@@ -22,12 +24,14 @@ class ExpensesAdapter(private val expenses: ArrayList<Expense>, private val expe
         val priceView: TextView
         val descriptionView: TextView
         val deleteButton: ImageView
+        val expenseImageView: ImageView
 
         init {
             nameView = view.findViewById(R.id.expense_name)
             priceView = view.findViewById(R.id.expense_price)
             descriptionView = view.findViewById(R.id.expense_description)
             deleteButton = view.findViewById(R.id.expense_delete_button)
+            expenseImageView = view.findViewById(R.id.expense_image)
         }
     }
 
@@ -43,6 +47,9 @@ class ExpensesAdapter(private val expenses: ArrayList<Expense>, private val expe
         viewHolder.nameView.text = expenses[position].name
         viewHolder.priceView.text = "R$${expenses[position].price}"
         viewHolder.descriptionView.text = expenses[position].description
+        Glide.with(viewHolder.expenseImageView.context).
+            load(Uri.parse(expenses[position].imgUri)).
+                into(viewHolder.expenseImageView)
 
         viewHolder.deleteButton.setOnClickListener {
             val scope = MainScope()
