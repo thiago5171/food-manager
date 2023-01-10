@@ -30,4 +30,5 @@
     <string name="income">Receitas</string>
     <string name="costs">Custos</string>
     <string name="pick_image">Selecione uma imagem</string>
+    <string name="edit_recipe">editar receita</string>
 </resources>
