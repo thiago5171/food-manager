@@ -23,8 +23,7 @@ class ExpenseList : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        val db = DatabaseHelper.getInstance(this)
-        val dao = db.expenseDAO()
+        val dao = DatabaseHelper.getInstance(this).expenseDAO()
         val scope = MainScope()
 
         val list = binding.expenseList
