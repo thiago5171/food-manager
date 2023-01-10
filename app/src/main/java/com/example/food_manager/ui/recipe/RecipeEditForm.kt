@@ -17,7 +17,6 @@ import com.example.food_manager.domain.recipe.Ingredient
 import com.example.food_manager.domain.recipe.Recipe
 import com.example.food_manager.domain.recipe.RecipeIngredientCrossRef
 import com.example.food_manager.domain.recipe.RecipeWithIngredients
-import com.example.food_manager.ui.adapter.IngredientsAdapter
 import com.google.android.material.textfield.TextInputEditText
 import com.example.food_manager.ui.adapter.IngredientsToSelectAdapter
 import kotlinx.coroutines.Dispatchers
@@ -74,11 +73,11 @@ class RecipeEditForm : AppCompatActivity() {
 
         chosenIngredients = item.ingredients as ArrayList<Ingredient>
 
-            val adapter = IngredientsAdapter(chosenIngredients)
-            val ingredientsList = binding.editChosenIngredients
-            ingredientsList.layoutManager = GridLayoutManager(
-                this@RecipeEditForm, GridLayoutManager.VERTICAL)
-            ingredientsList.adapter = adapter
+        val adapter = IngredientsToSelectAdapter(chosenIngredients)
+        val ingredientsList = binding.editChosenIngredients
+        ingredientsList.layoutManager = GridLayoutManager(
+            this@RecipeEditForm, GridLayoutManager.VERTICAL)
+        ingredientsList.adapter = adapter
     }
 
     private fun pickImage() {

@@ -1,5 +1,7 @@
 package com.example.food_manager.ui.adapter
 
+import android.annotation.SuppressLint
+import android.content.Intent
 import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
@@ -44,6 +46,7 @@ class RecipesAdapter (val recipes: ArrayList<Recipe>, val recipesDAO: RecipeWith
         return ViewHolder(view)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
         viewHolder.nameView.text = recipes[position].name
         viewHolder.costView.text = "Custa: R$${recipes[position].cost}"
@@ -61,7 +64,6 @@ class RecipesAdapter (val recipes: ArrayList<Recipe>, val recipesDAO: RecipeWith
                 withContext(Dispatchers.IO) {
                     val  item = recipesDAO.findFullRecipeById(recipes[position].id)
                     i.putExtra("recipe", item)
-                    println(item)
 //                    val nameEdit = view.findViewById<TextView>(R.id.edit_recipe_name_edit)
 //                    val descriptionEdit = view.findViewById<TextView>(R.id.edit_recipe_description_edit)
 //                    val yieldEdit = view.findViewById<TextView>(R.id.edit_recipe_yield_field)
