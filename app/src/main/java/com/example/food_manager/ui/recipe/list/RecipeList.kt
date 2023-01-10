@@ -3,7 +3,6 @@ package com.example.food_manager.ui.recipe.list
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.food_manager.data.DatabaseHelper
 import com.example.food_manager.databinding.ActivityRecipeListBinding
@@ -24,8 +23,7 @@ class RecipeList : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        val db = DatabaseHelper.getInstance(this)
-        val dao = db.recipeWithIngredientsDAO()
+        val dao = DatabaseHelper.getInstance(this).recipeWithIngredientsDAO()
         val scope = MainScope()
 
         val list = binding.recipesList

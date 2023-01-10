@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.food_manager.databinding.ActivityMainBinding
 import com.example.food_manager.ui.finances.Finances
-import com.example.food_manager.ui.recipe.ingredient.IngredientRegisterForm
+import com.example.food_manager.ui.recipe.ingredient.list.IngredientList
 import com.example.food_manager.ui.recipe.list.RecipeList
 
 class Main : AppCompatActivity() {
@@ -25,7 +25,7 @@ class Main : AppCompatActivity() {
 
         val ingredientsLayout = binding.ingredients
         ingredientsLayout.setOnClickListener {
-            val intent = Intent(this, IngredientRegisterForm::class.java)
+            val intent = Intent(this, IngredientList::class.java)
             startActivity(intent)
         }
 

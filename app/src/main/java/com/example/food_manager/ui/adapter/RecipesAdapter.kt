@@ -15,7 +15,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import android.content.Intent
 import com.example.food_manager.ui.recipe.RecipeEditForm
 
 class RecipesAdapter (val recipes: ArrayList<Recipe>, val recipesDAO: RecipeWithIngredientsDAO) : RecyclerView.Adapter<RecipesAdapter.ViewHolder>(){
@@ -48,7 +47,7 @@ class RecipesAdapter (val recipes: ArrayList<Recipe>, val recipesDAO: RecipeWith
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
         viewHolder.nameView.text = recipes[position].name
         viewHolder.costView.text = "Custa: R$${recipes[position].cost}"
-        viewHolder.yieldView.text = "Rende: ${recipes[position].yield}"
+        viewHolder.yieldView.text = "Rende: ${recipes[position].yield} porções."
         viewHolder.descriptionView.text = recipes[position].description
         Glide.with(viewHolder.recipeImageView.context).
             load(Uri.parse(recipes[position].imgUri)).into(viewHolder.recipeImageView)
@@ -77,6 +76,7 @@ class RecipesAdapter (val recipes: ArrayList<Recipe>, val recipesDAO: RecipeWith
             notifyItemRemoved(position)
             notifyItemRangeChanged(position, recipes.size)
         }
+
         viewHolder.deleteButton.setOnClickListener {
             val scope = MainScope()
             scope.launch {

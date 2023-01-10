@@ -35,7 +35,8 @@ class ExampleUnitTest {
                 name = "Torta de frango sem queijoTorta de frango sem queijoTorta de frango sem queijo",
                 description = "Especial do artur corno",
                 cost = 24.00,
-                yield = 1
+                yield = 1,
+                imgUri = ""
             )
         )
         val expected : Long = 0
@@ -57,7 +58,8 @@ class ExampleUnitTest {
                 name = "Torta de frango sem queijoTorta de frango sem queijoTorta de frango sem queijo",
                 description = "Especial do artur corno",
                 cost = 24.00,
-                yield = 1
+                yield = 1,
+                imgUri = ""
             )
         )
         val expected = 1

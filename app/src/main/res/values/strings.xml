@@ -27,7 +27,10 @@
     <string name="register_expense_title">Cadastro de despesa</string>
     <string name="expense_value">Valor da despesa</string>
     <string name="expenses">Despesas</string>
-    <string name="income">Receitas</string>
+    <string name="income">Entradas</string>
     <string name="costs">Custos</string>
     <string name="pick_image">Selecione uma imagem</string>
+    <string name="edit_recipe">editar receita</string>
+    <string name="register_income">Cadastro de entrada</string>
+    <string name="amount">Valor</string>
 </resources>

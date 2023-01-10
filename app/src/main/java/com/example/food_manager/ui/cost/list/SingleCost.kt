@@ -1,12 +1,12 @@
-package com.example.food_manager.ui.recipe.ingredient
+package com.example.food_manager.ui.cost.list
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.food_manager.databinding.ActivitySingleIngredientBinding
+import com.example.food_manager.databinding.ActivitySingleCostBinding
 
-class SingleIngredient : AppCompatActivity() {
+class SingleCost : AppCompatActivity() {
     private val binding by lazy {
-        ActivitySingleIngredientBinding.inflate(layoutInflater)
+        ActivitySingleCostBinding.inflate(layoutInflater)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -10,7 +10,6 @@ por meio do fornecimento de módulos de gerenciamento financeiro para o negócio
 
 ### Pilha de tecnologia:
 
-  - [Docker](https://www.docker.com/) - para padronizar e manuseiar infraestrutura de desenvolvimento;
   - [Kotlin](https://kotlinlang.org/) - para produzir o código fonte do aplicativo android.
   
 ### Sobre nós:

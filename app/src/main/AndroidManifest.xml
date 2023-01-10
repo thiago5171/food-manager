@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -15,6 +16,41 @@
         android:theme="@style/Theme.Foodmanager"
         tools:targetApi="31">
         <activity
+            android:name=".ui.recipe.ingredient.list.SingleIngredient"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ui.income.IncomeRegisterForm"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ui.recipe.ingredient.list.IngredientList"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ui.cost.list.SingleCost"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ui.cost.list.CostList"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".ui.recipe.RecipeEditForm"
             android:exported="false">
             <meta-data
@@ -22,14 +58,14 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".SingleIncome"
+            android:name=".ui.income.list.SingleIncome"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".FinancialIncomeList"
+            android:name=".ui.income.list.FinancialIncomeList"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -64,7 +100,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".ui.recipe.ingredient.SingleIngredient"
+            android:name=".ui.recipe.ingredient.list.SingleIngredientToSelect"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -112,4 +148,5 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
     </application>
+
 </manifest>

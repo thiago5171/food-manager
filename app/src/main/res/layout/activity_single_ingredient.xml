@@ -4,50 +4,112 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/background"
+    android:minWidth="350dp"
+    android:outlineProvider="none"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent"
-    tools:context=".ui.recipe.ingredient.SingleIngredient">
+    tools:context=".ui.recipe.list.SingleRecipe">
 
     <LinearLayout
-        android:layout_width="365dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_marginStart="15sp"
-        android:padding="12dp"
-        android:background="@drawable/chip_background"
-        android:orientation="horizontal"
-        android:textAlignment="center"
+        android:background="@android:color/transparent"
+        android:backgroundTint="@android:color/transparent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-    >
-        <TextView
-            android:id="@+id/ingredient_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="start"
-            android:layout_weight="1"
-            android:textColor="@color/trendingStart"
-        />
+        app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/ingredient_quantity"
-            android:gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textColor="@color/trendingStart" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="15dp">
 
-        <ImageView
-            android:id="@+id/ingredient_cancel_icon"
-            android:layout_gravity="end"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_baseline_close_24"
-            app:tint="@color/trendingStart"
-            android:contentDescription="@string/cancel_msg"
-        />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/single_ingredient_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/alata"
+                    android:includeFontPadding="true"
+                    android:maxLength="70"
+                    android:textColor="#514136"
+                    app:autoSizeMaxTextSize="26sp"
+                    app:autoSizeMinTextSize="16sp"
+                    app:autoSizeTextType="none"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/single_ingredient_description"
+                    android:layout_width="0dp"
+                    android:layout_height="24dp"
+                    android:layout_marginStart="2dp"
+                    android:fontFamily="@font/alata"
+                    android:includeFontPadding="false"
+                    android:maxLength="70"
+                    android:minHeight="20dp"
+                    android:paddingBottom="4dp"
+                    android:textAlignment="textStart"
+                    android:textColor="#CDC7C3"
+                    app:autoSizeMaxTextSize="20dp"
+                    app:autoSizeMinTextSize="16sp"
+                    app:autoSizeTextType="none"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/single_ingredient_name" />
+
+                <ImageView
+                    android:id="@+id/delete_ingredient_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:adjustViewBounds="false"
+                    android:background="@android:color/transparent"
+                    android:src="@android:drawable/ic_menu_delete"
+                    android:layout_gravity="end"
+                    android:tintMode="src_in"
+                    app:layout_constraintTop_toBottomOf="@id/single_ingredient_description"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:tint="@color/wine"
+                    android:contentDescription="@string/cancel_msg" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toBottomOf="@id/single_ingredient_description"
+                    >
+                    <TextView
+                        android:id="@+id/single_ingredient_price"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/alata"
+                        android:textColor="@color/trendingEnd"
+                        android:textSize="14sp"
+                        app:layout_constraintHorizontal_bias="0.011" />
+
+                    <TextView
+                        android:id="@+id/single_ingredient_quantity_plus_unit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/alata"
+                        android:textColor="@color/trendingEnd"
+                        android:textSize="14sp"
+                        app:layout_constraintHorizontal_bias="0.011" />
+                </LinearLayout>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,7 +7,7 @@
     android:background="@color/background"
     tools:context=".ui.recipe.list.RecipeList">
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/incomes_layout_header"
+        android:id="@+id/costs_layout_header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/header_background"
@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
             android:layout_marginTop="15dp"
-            android:text="@string/income"
+            android:text="@string/costs"
             android:textColor="@color/white"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -27,7 +27,7 @@
             />
     </androidx.constraintlayout.widget.ConstraintLayout>
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/create_income"
+        android:id="@+id/create_cost"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="250dp"
@@ -38,12 +38,12 @@
         app:backgroundTint="@color/trendingStart"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/incomes_list"
-        app:layout_constraintTop_toBottomOf="@id/incomes_layout_header"
+        app:layout_constraintStart_toStartOf="@+id/costs_list"
+        app:layout_constraintTop_toBottomOf="@id/costs_layout_header"
         app:srcCompat="@android:drawable/ic_input_add" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/incomes_list"
+        android:id="@+id/costs_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="64dp"

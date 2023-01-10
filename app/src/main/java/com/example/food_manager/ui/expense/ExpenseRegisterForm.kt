@@ -1,9 +1,9 @@
 package com.example.food_manager.ui.expense
 
 import android.annotation.SuppressLint
-import android.app.Activity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.example.food_manager.data.DatabaseHelper
 import com.example.food_manager.databinding.ActivityExpenseRegisterFormBinding
 import com.example.food_manager.domain.Expense.Expense
@@ -12,7 +12,7 @@ import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class ExpenseRegisterForm : Activity() {
+class ExpenseRegisterForm : AppCompatActivity() {
     private val binding by lazy {
         ActivityExpenseRegisterFormBinding.inflate(layoutInflater)
     }
