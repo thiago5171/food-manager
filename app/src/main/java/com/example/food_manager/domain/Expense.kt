@@ -9,5 +9,6 @@ data class Expense(
     @PrimaryKey(autoGenerate = true) val id : Long = 0L,
     val name: String,
     val description: String,
-    val price: Double
+    val price: Double,
+    val imgUri: String
 ) : Serializable

@@ -1,9 +1,17 @@
 package com.example.food_manager.ui.expense
 
+import android.Manifest
 import android.annotation.SuppressLint
+import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.content.res.AppCompatResources
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import com.example.food_manager.R
 import com.example.food_manager.data.DatabaseHelper
 import com.example.food_manager.databinding.ActivityExpenseRegisterFormBinding
 import com.example.food_manager.domain.Expense
@@ -17,10 +25,32 @@ class ExpenseRegisterForm : AppCompatActivity() {
         ActivityExpenseRegisterFormBinding.inflate(layoutInflater)
     }
 
+    private var imageUri: Uri? = null
+
+    private val getContent = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
+        imageUri = uri
+        if (uri != null) {
+            val pickImageButton = binding.pickExpenseImageAction
+            val newIcon = AppCompatResources.getDrawable(this,
+                R.drawable.ic_baseline_check_circle_outline_24)
+            pickImageButton.setCompoundDrawablesWithIntrinsicBounds(null, null,
+                newIcon, null)
+            pickImageButton.text = getString(R.string.image_was_selected)
+            pickImageButton.setTextColor(
+                AppCompatResources.getColorStateList(this,
+                R.color.trendingStart))
+        }
+    }
+
     @SuppressLint("ResourceAsColor")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+
+        val pickImageButton = binding.pickExpenseImageAction
+        pickImageButton.setOnClickListener {
+            pickImage()
+        }
 
         val saveExpenseButton = binding.saveExpenseBtn
         saveExpenseButton.setOnClickListener {
@@ -33,6 +63,21 @@ class ExpenseRegisterForm : AppCompatActivity() {
         }
     }
 
+    private fun pickImage() {
+        val permission = ContextCompat.checkSelfPermission(this,
+            Manifest.permission.READ_EXTERNAL_STORAGE)
+        if (permission == PackageManager.PERMISSION_GRANTED) {
+            getContent.launch("image/*")
+        } else {
+            ActivityCompat.requestPermissions(this,
+                arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE), 1)
+            if (ContextCompat.checkSelfPermission(this,
+                    Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+                getContent.launch("image/*")
+            }
+        }
+    }
+
     private fun saveExpense() {
         val name = binding.registerExpenseNameEdit.text.toString()
         val description = binding.registerExpenseDescriptionEdit.text.toString()
@@ -41,7 +86,8 @@ class ExpenseRegisterForm : AppCompatActivity() {
         val expense = Expense(
             name = name,
             description = description,
-            price = price
+            price = price,
+            imgUri = imageUri.toString()
         )
 
         if (expenseIsValid(expense)) {
