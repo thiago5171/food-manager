@@ -1,5 +1,4 @@
 package com.example.food_manager.ui.recipe
-
 import android.Manifest
 import android.content.pm.PackageManager
 import android.net.Uri
@@ -18,6 +17,8 @@ import com.example.food_manager.domain.recipe.Ingredient
 import com.example.food_manager.domain.recipe.Recipe
 import com.example.food_manager.domain.recipe.RecipeIngredientCrossRef
 import com.example.food_manager.domain.recipe.RecipeWithIngredients
+import com.example.food_manager.ui.adapter.IngredientsAdapter
+import com.google.android.material.textfield.TextInputEditText
 import com.example.food_manager.ui.adapter.IngredientsToSelectAdapter
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.MainScope
@@ -57,6 +58,27 @@ class RecipeEditForm : AppCompatActivity() {
         saveRecipeButton.setOnClickListener {
             saveRecipe()
         }
+
+        val item = intent.getSerializableExtra("recipe") as RecipeWithIngredients?
+        if (item == null) {
+            finish()
+            return
+        }
+        val nameEdit = findViewById<TextInputEditText>(R.id. edit_recipe_name_edit)
+        val descriptionEdit = findViewById<TextInputEditText>(R.id.edit_recipe_description_edit)
+        val yieldEdit = findViewById<TextInputEditText>(R.id.register_recipe_yield_edit)
+
+        nameEdit.setText(item.recipe.name)
+        descriptionEdit.setText(item.recipe.description)
+        yieldEdit.setText(item.recipe.yield.toString())
+
+        chosenIngredients = item.ingredients as ArrayList<Ingredient>
+
+            val adapter = IngredientsAdapter(chosenIngredients)
+            val ingredientsList = binding.editChosenIngredients
+            ingredientsList.layoutManager = GridLayoutManager(
+                this@RecipeEditForm, GridLayoutManager.VERTICAL)
+            ingredientsList.adapter = adapter
     }
 
     private fun pickImage() {

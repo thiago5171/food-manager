@@ -14,4 +14,4 @@ data class RecipeWithIngredients(
         associateBy = Junction(RecipeIngredientCrossRef::class)
     )
     val ingredients: List<Ingredient>
-)
+) : java.io.Serializable

@@ -30,9 +30,12 @@ interface RecipeWithIngredientsDAO {
     @Delete
     fun deleteOne(recipe: Recipe)
 
+    @Query("delete from ingredient where id = :id")
+    fun delete(id: Long)
+
     @Transaction
     fun editOne(recipe:Recipe, crossRefs: List<RecipeIngredientCrossRef>) {
-        deleteOne(recipe)
+        delete(recipe.id)
         insertRecipe(crossRefs,  recipe)
     }
 
