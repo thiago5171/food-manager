@@ -1,6 +1,7 @@
 package com.example.food_manager.data.dao;
 
 import android.database.Cursor;
+import androidx.room.EntityDeletionOrUpdateAdapter;
 import androidx.room.EntityInsertionAdapter;
 import androidx.room.RoomDatabase;
 import androidx.room.RoomSQLiteQuery;
@@ -21,6 +22,8 @@ public final class IngredientDAO_Impl implements IngredientDAO {
   private final RoomDatabase __db;
 
   private final EntityInsertionAdapter<Ingredient> __insertionAdapterOfIngredient;
+
+  private final EntityDeletionOrUpdateAdapter<Ingredient> __deletionAdapterOfIngredient;
 
   public IngredientDAO_Impl(RoomDatabase __db) {
     this.__db = __db;
@@ -52,6 +55,17 @@ public final class IngredientDAO_Impl implements IngredientDAO {
         stmt.bindDouble(6, value.getPrice());
       }
     };
+    this.__deletionAdapterOfIngredient = new EntityDeletionOrUpdateAdapter<Ingredient>(__db) {
+      @Override
+      public String createQuery() {
+        return "DELETE FROM `Ingredient` WHERE `id` = ?";
+      }
+
+      @Override
+      public void bind(SupportSQLiteStatement stmt, Ingredient value) {
+        stmt.bindLong(1, value.getId());
+      }
+    };
   }
 
   @Override
@@ -60,6 +74,18 @@ public final class IngredientDAO_Impl implements IngredientDAO {
     __db.beginTransaction();
     try {
       __insertionAdapterOfIngredient.insert(ingredient);
+      __db.setTransactionSuccessful();
+    } finally {
+      __db.endTransaction();
+    }
+  }
+
+  @Override
+  public void deleteOne(final Ingredient ingredient) {
+    __db.assertNotSuspendingTransaction();
+    __db.beginTransaction();
+    try {
+      __deletionAdapterOfIngredient.handle(ingredient);
       __db.setTransactionSuccessful();
     } finally {
       __db.endTransaction();

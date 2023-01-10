@@ -14,12 +14,11 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.example.food_manager.R
 import com.example.food_manager.data.DatabaseHelper
 import com.example.food_manager.databinding.ActivityRecipeEditFormBinding
-import com.example.food_manager.databinding.ActivityRecipeRegisterFormBinding
 import com.example.food_manager.domain.recipe.Ingredient
 import com.example.food_manager.domain.recipe.Recipe
 import com.example.food_manager.domain.recipe.RecipeIngredientCrossRef
 import com.example.food_manager.domain.recipe.RecipeWithIngredients
-import com.example.food_manager.ui.adapter.IngredientsAdapter
+import com.example.food_manager.ui.adapter.IngredientsToSelectAdapter
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
@@ -107,7 +106,7 @@ class RecipeEditForm : AppCompatActivity() {
             }
 
             builder.setPositiveButton("OK") { dialog, _ ->
-                val adapter = IngredientsAdapter(chosenIngredients)
+                val adapter = IngredientsToSelectAdapter(chosenIngredients)
                 val ingredientsList = binding.editChosenIngredients
                 ingredientsList.layoutManager = GridLayoutManager(
                     this@RecipeEditForm, GridLayoutManager.VERTICAL)
