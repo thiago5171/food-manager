@@ -12,6 +12,7 @@ import com.bumptech.glide.Glide
 import com.example.food_manager.R
 import com.example.food_manager.data.dao.ExpenseDAO
 import com.example.food_manager.domain.Expense
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
@@ -52,16 +53,25 @@ class ExpensesAdapter(private val expenses: ArrayList<Expense>, private val expe
                 into(viewHolder.expenseImageView)
 
         viewHolder.deleteButton.setOnClickListener {
-            val scope = MainScope()
-            scope.launch {
-                withContext(Dispatchers.IO) {
-                    expensesDAO.deleteOne(expenses[position])
-                    expenses.clear()
-                    expenses.addAll(expensesDAO.findAll())
+            val builder = MaterialAlertDialogBuilder(viewHolder.itemView.context)
+            builder.setTitle(R.string.delete_confirmation)
+            builder.setPositiveButton(R.string.confirm) { dialog, _ ->
+                val scope = MainScope()
+                scope.launch {
+                    withContext(Dispatchers.IO) {
+                        expensesDAO.deleteOne(expenses[position])
+                        expenses.clear()
+                        expenses.addAll(expensesDAO.findAll())
+                    }
                 }
+                notifyItemRemoved(position)
+                notifyItemRangeChanged(position, expenses.size)
+                dialog.dismiss()
             }
-            notifyItemRemoved(position)
-            notifyItemRangeChanged(position, expenses.size)
+            builder.setNegativeButton(R.string.cancel) { dialog, _ ->
+                dialog.cancel()
+            }
+            builder.create().show()
         }
     }
 

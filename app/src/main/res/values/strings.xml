@@ -34,4 +34,7 @@
     <string name="register_income">Cadastro de entrada</string>
     <string name="amount">Valor</string>
     <string name="image_was_selected">"Imagem selecionada"</string>
+    <string name="delete_confirmation">Você deseja mesmo deletar este registro?</string>
+    <string name="confirm">Sim</string>
+    <string name="cancel">Cancelar</string>
 </resources>

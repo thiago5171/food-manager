@@ -18,6 +18,7 @@ import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import com.example.food_manager.ui.recipe.RecipeEditForm
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 class RecipesAdapter (val recipes: ArrayList<Recipe>, val recipesDAO: RecipeWithIngredientsDAO) : RecyclerView.Adapter<RecipesAdapter.ViewHolder>(){
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -80,16 +81,25 @@ class RecipesAdapter (val recipes: ArrayList<Recipe>, val recipesDAO: RecipeWith
         }
 
         viewHolder.deleteButton.setOnClickListener {
-            val scope = MainScope()
-            scope.launch {
-                withContext(Dispatchers.IO) {
-                    recipesDAO.deleteOne(recipes[position])
-                    recipes.clear()
-                    recipes.addAll(recipesDAO.findAllWithNoIngredients())
+            val builder = MaterialAlertDialogBuilder(viewHolder.itemView.context)
+            builder.setTitle(R.string.delete_confirmation)
+            builder.setPositiveButton(R.string.confirm) { dialog, _ ->
+                val scope = MainScope()
+                scope.launch {
+                    withContext(Dispatchers.IO) {
+                        recipesDAO.deleteOne(recipes[position])
+                        recipes.clear()
+                        recipes.addAll(recipesDAO.findAllWithNoIngredients())
+                    }
                 }
+                notifyItemRemoved(position)
+                notifyItemRangeChanged(position, recipes.size)
+                dialog.dismiss()
             }
-            notifyItemRemoved(position)
-            notifyItemRangeChanged(position, recipes.size)
+            builder.setNegativeButton(R.string.cancel) { dialog, _ ->
+                dialog.cancel()
+            }
+            builder.create().show()
         }
     }
 
