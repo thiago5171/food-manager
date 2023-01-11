@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.food_manager.R
 import com.example.food_manager.data.dao.IngredientDAO
 import com.example.food_manager.domain.Ingredient
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
@@ -48,16 +49,25 @@ class IngredientsAdapter(private val ingredients: ArrayList<Ingredient>, val ing
         viewHolder.quantityView.text = ingredients[position].quantity.toString() + " " +
                 ingredients[position].unitMeasurement
         viewHolder.deleteView.setOnClickListener {
-            val scope = MainScope()
-            scope.launch {
-                withContext(Dispatchers.IO) {
-                    ingredientsDAO.deleteOne(ingredients[position])
-                    ingredients.clear()
-                    ingredients.addAll(ingredientsDAO.findAll())
+            val builder = MaterialAlertDialogBuilder(viewHolder.itemView.context)
+            builder.setTitle(R.string.delete_confirmation)
+            builder.setPositiveButton(R.string.confirm) { dialog, _ ->
+                val scope = MainScope()
+                scope.launch {
+                    withContext(Dispatchers.IO) {
+                        ingredientsDAO.deleteOne(ingredients[position])
+                        ingredients.clear()
+                        ingredients.addAll(ingredientsDAO.findAll())
+                    }
                 }
+                notifyItemRemoved(position)
+                notifyItemRangeChanged(position, ingredients.size)
+                dialog.dismiss()
             }
-            notifyItemRemoved(position)
-            notifyItemRangeChanged(position, ingredients.size)
+            builder.setNegativeButton(R.string.cancel) { dialog, _ ->
+                dialog.cancel()
+            }
+            builder.create().show()
         }
     }
 

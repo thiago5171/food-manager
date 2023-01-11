@@ -54,10 +54,10 @@ public final class DatabaseHelper_Impl extends DatabaseHelper {
         _db.execSQL("CREATE TABLE IF NOT EXISTS `Recipe` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `description` TEXT NOT NULL, `cost` REAL NOT NULL, `yield` INTEGER NOT NULL, `imgUri` TEXT NOT NULL)");
         _db.execSQL("CREATE TABLE IF NOT EXISTS `Ingredient` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `description` TEXT NOT NULL, `quantity` INTEGER NOT NULL, `unitMeasurement` TEXT NOT NULL, `price` REAL NOT NULL)");
         _db.execSQL("CREATE TABLE IF NOT EXISTS `RecipeIngredientCrossRef` (`recipeID` INTEGER NOT NULL, `ingredientID` INTEGER NOT NULL, PRIMARY KEY(`recipeID`, `ingredientID`))");
-        _db.execSQL("CREATE TABLE IF NOT EXISTS `Expense` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `description` TEXT NOT NULL, `price` REAL NOT NULL)");
+        _db.execSQL("CREATE TABLE IF NOT EXISTS `Expense` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `description` TEXT NOT NULL, `price` REAL NOT NULL, `imgUri` TEXT NOT NULL)");
         _db.execSQL("CREATE TABLE IF NOT EXISTS `Income` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `description` TEXT NOT NULL, `amount` REAL NOT NULL, `imgUri` TEXT NOT NULL)");
         _db.execSQL("CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)");
-        _db.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'ad17bb6f8a794cee07b63361ea4a87b4')");
+        _db.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '0421c47dcd9712d5dba970921a611f6f')");
       }
 
       @Override
@@ -149,11 +149,12 @@ public final class DatabaseHelper_Impl extends DatabaseHelper {
                   + " Expected:\n" + _infoRecipeIngredientCrossRef + "\n"
                   + " Found:\n" + _existingRecipeIngredientCrossRef);
         }
-        final HashMap<String, TableInfo.Column> _columnsExpense = new HashMap<String, TableInfo.Column>(4);
+        final HashMap<String, TableInfo.Column> _columnsExpense = new HashMap<String, TableInfo.Column>(5);
         _columnsExpense.put("id", new TableInfo.Column("id", "INTEGER", true, 1, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsExpense.put("name", new TableInfo.Column("name", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsExpense.put("description", new TableInfo.Column("description", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsExpense.put("price", new TableInfo.Column("price", "REAL", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsExpense.put("imgUri", new TableInfo.Column("imgUri", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         final HashSet<TableInfo.ForeignKey> _foreignKeysExpense = new HashSet<TableInfo.ForeignKey>(0);
         final HashSet<TableInfo.Index> _indicesExpense = new HashSet<TableInfo.Index>(0);
         final TableInfo _infoExpense = new TableInfo("Expense", _columnsExpense, _foreignKeysExpense, _indicesExpense);
@@ -180,7 +181,7 @@ public final class DatabaseHelper_Impl extends DatabaseHelper {
         }
         return new RoomOpenHelper.ValidationResult(true, null);
       }
-    }, "ad17bb6f8a794cee07b63361ea4a87b4", "92359edf0e02d78756cdc0057b0ebceb");
+    }, "0421c47dcd9712d5dba970921a611f6f", "2e322ee318500b3da7203be5b8a15139");
     final SupportSQLiteOpenHelper.Configuration _sqliteConfig = SupportSQLiteOpenHelper.Configuration.builder(configuration.context)
         .name(configuration.name)
         .callback(_openCallback)
