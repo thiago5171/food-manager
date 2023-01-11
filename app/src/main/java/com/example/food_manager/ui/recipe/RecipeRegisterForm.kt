@@ -136,7 +136,11 @@ class RecipeRegisterForm : AppCompatActivity() {
     private fun saveRecipe() {
         val name = binding.registerRecipeNameEdit.text.toString()
         val description = binding.registerRecipeDescriptionEdit.text.toString()
-        val yield = binding.registerRecipeYieldEdit.text.toString().toInt()
+        var yield = 0
+        val yieldText = binding.registerRecipeYieldEdit.text.toString()
+        if (yieldText.isNotBlank()) {
+            yield = yieldText.toInt()
+        }
         val ingredients = chosenIngredients
         var price = 0.0
         for (ingredient in ingredients) {
@@ -168,11 +172,11 @@ class RecipeRegisterForm : AppCompatActivity() {
                 }
             }
 
-            Toast.makeText(this, "salvo com sucesso", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.successful_operation), Toast.LENGTH_SHORT).show()
 
             finish()
         } else {
-            Toast.makeText(this, "algo deu errado", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.data_not_processed), Toast.LENGTH_SHORT).show()
         }
     }
 

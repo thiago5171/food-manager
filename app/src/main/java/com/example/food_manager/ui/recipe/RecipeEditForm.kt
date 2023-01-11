@@ -188,11 +188,11 @@ class RecipeEditForm : AppCompatActivity() {
                 }
             }
 
-            Toast.makeText(this, "salvo com sucesso", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.successful_operation), Toast.LENGTH_SHORT).show()
 
             finish()
         } else {
-            Toast.makeText(this, "algo deu errado", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.data_not_processed), Toast.LENGTH_SHORT).show()
         }
     }
 

@@ -37,4 +37,6 @@
     <string name="delete_confirmation">Você deseja mesmo deletar este registro?</string>
     <string name="confirm">Sim</string>
     <string name="cancel">Cancelar</string>
+    <string name="successful_operation">Operação concluída com sucesso</string>
+    <string name="data_not_processed">Algum dado não pôde ser processado</string>
 </resources>

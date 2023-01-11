@@ -81,7 +81,11 @@ class ExpenseRegisterForm : AppCompatActivity() {
     private fun saveExpense() {
         val name = binding.registerExpenseNameEdit.text.toString()
         val description = binding.registerExpenseDescriptionEdit.text.toString()
-        val price = binding.registerExpensePriceEdit.text.toString().replace(',', '.').toDouble()
+        var price = 0.0
+        val priceText = binding.registerExpensePriceEdit.text.toString().replace(',', '.')
+        if (priceText.isNotBlank()) {
+            price = priceText.toDouble()
+        }
 
         val expense = Expense(
             name = name,
@@ -100,11 +104,11 @@ class ExpenseRegisterForm : AppCompatActivity() {
                 }
             }
 
-            Toast.makeText(this, "salvo com sucesso", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.successful_operation), Toast.LENGTH_SHORT).show()
 
             finish()
         } else {
-            Toast.makeText(this, "algo deu errado", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.data_not_processed), Toast.LENGTH_SHORT).show()
         }
     }
 

@@ -79,7 +79,11 @@ class IncomeRegisterForm : AppCompatActivity() {
     private fun saveIncome() {
         val name = binding.registerIncomeNameEdit.text.toString()
         val description = binding.registerRecipeDescriptionEdit.text.toString()
-        val amount = binding.registerIncomeAmountEdit.text.toString().replace(',', '.').toDouble()
+        var amount = 0.0
+        val amountText = binding.registerIncomeAmountEdit.text.toString().replace(',', '.')
+        if (amountText.isNotBlank()) {
+            amount = amountText.toDouble()
+        }
         val imgUri = imageUri.toString()
 
         val income = Income(
@@ -99,11 +103,11 @@ class IncomeRegisterForm : AppCompatActivity() {
                 }
             }
 
-            Toast.makeText(this, "salvo com sucesso", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.successful_operation), Toast.LENGTH_SHORT).show()
 
             finish()
         } else {
-            Toast.makeText(this, "algo deu errado", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.data_not_processed), Toast.LENGTH_SHORT).show()
         }
     }
 
