@@ -30,7 +30,10 @@
     <string name="income">Entradas</string>
     <string name="costs">Custos</string>
     <string name="pick_image">Selecione uma imagem</string>
-    <string name="edit_recipe">editar receita</string>
+    <string name="edit_recipe">Editar Receita</string>
+    <string name="edit_ingredient">Editar Ingrediente</string>
+    <string name="edit_income">Editar Entrada</string>
+    <string name="edit_expense">Editar Despesa</string>
     <string name="register_income">Cadastro de entrada</string>
     <string name="amount">Valor</string>
     <string name="image_was_selected">"Imagem selecionada"</string>

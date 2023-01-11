@@ -4,6 +4,7 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
@@ -13,12 +14,11 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.food_manager.R
 import com.example.food_manager.data.DatabaseHelper
-import com.example.food_manager.databinding.ActivityRecipeEditFormBinding
+import com.example.food_manager.databinding.ActivityRecipeRegisterFormBinding
 import com.example.food_manager.domain.Ingredient
 import com.example.food_manager.domain.Recipe
 import com.example.food_manager.domain.RecipeIngredientCrossRef
 import com.example.food_manager.domain.RecipeWithIngredients
-import com.google.android.material.textfield.TextInputEditText
 import com.example.food_manager.ui.adapter.IngredientsToSelectAdapter
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.MainScope
@@ -27,7 +27,7 @@ import kotlinx.coroutines.withContext
 
 class RecipeEditForm : AppCompatActivity() {
     private val binding by lazy {
-        ActivityRecipeEditFormBinding.inflate(layoutInflater)
+        ActivityRecipeRegisterFormBinding.inflate(layoutInflater)
     }
 
     private var chosenIngredients = ArrayList<Ingredient>()
@@ -35,58 +35,55 @@ class RecipeEditForm : AppCompatActivity() {
 
     private val getContent = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
         imageUri = uri
-        if (uri != null) {
-            val pickImageButton = binding.editPickRecipeImageAction
-            val newIcon = AppCompatResources.getDrawable(this,
-                R.drawable.ic_baseline_check_circle_outline_24)
-            pickImageButton.setCompoundDrawablesWithIntrinsicBounds(null, null,
-                newIcon, null)
-            pickImageButton.text = getString(R.string.image_was_selected)
-            pickImageButton.setTextColor(
-                AppCompatResources.getColorStateList(this,
-                R.color.trendingStart))
-        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        val pickImageButton = binding.editPickRecipeImageAction
+        val title = binding.registerRecipeTitle
+        title.text = getString(R.string.edit_recipe)
 
+        val recipeWithIngredients = intent.getSerializableExtra("recipe") as RecipeWithIngredients?
+
+        fillUpRecipeInfoOnView(recipeWithIngredients)
+
+        val pickImageButton = binding.pickRecipeImageAction
         pickImageButton.setOnClickListener {
             pickImage()
-            pickImageButton.text = ""
-
         }
 
-        val selectIngredients = binding.editSelectIngredients
+        applySelectedStateToPickImageView(pickImageButton)
+
+        val selectIngredients = binding.selectIngredients
         selectIngredients.setOnClickListener {
             selectIngredients()
         }
 
-        val saveRecipeButton = binding.editSaveRecipeBtn
+        val saveRecipeButton = binding.saveRecipeBtn
         saveRecipeButton.setOnClickListener {
-            saveRecipe()
+            recipeWithIngredients?.recipe?.id?.let { id -> editRecipe(id) }
         }
+    }
 
-        val item = intent.getSerializableExtra("recipe") as RecipeWithIngredients?
-        if (item == null) {
+    private fun fillUpRecipeInfoOnView(recipeWithIngredients: RecipeWithIngredients?) {
+        if (recipeWithIngredients == null) {
             finish()
-            return
         }
-        val nameEdit = findViewById<TextInputEditText>(R.id. edit_recipe_name_edit)
-        val descriptionEdit = findViewById<TextInputEditText>(R.id.edit_recipe_description_edit)
-        val yieldEdit = findViewById<TextInputEditText>(R.id.register_recipe_yield_edit)
 
-        nameEdit.setText(item.recipe.name)
-        descriptionEdit.setText(item.recipe.description)
-        yieldEdit.setText(item.recipe.yield.toString())
+        val nameEdit = binding.registerRecipeNameEdit
+        val descriptionEdit = binding.registerRecipeDescriptionEdit
+        val yieldEdit = binding.registerRecipeYieldEdit
+        imageUri = Uri.parse(recipeWithIngredients?.recipe?.imgUri)
 
-        chosenIngredients = item.ingredients as ArrayList<Ingredient>
+        nameEdit.setText(recipeWithIngredients?.recipe?.name)
+        descriptionEdit.setText(recipeWithIngredients?.recipe?.description)
+        yieldEdit.setText(recipeWithIngredients?.recipe?.yield.toString())
+
+        chosenIngredients = recipeWithIngredients?.ingredients as ArrayList<Ingredient>
 
         val adapter = IngredientsToSelectAdapter(chosenIngredients)
-        val ingredientsList = binding.editChosenIngredients
+        val ingredientsList = binding.chosenIngredients
         ingredientsList.layoutManager = GridLayoutManager(
             this@RecipeEditForm, GridLayoutManager.VERTICAL)
         ingredientsList.adapter = adapter
@@ -105,6 +102,17 @@ class RecipeEditForm : AppCompatActivity() {
                 getContent.launch("image/*")
             }
         }
+    }
+
+    private fun applySelectedStateToPickImageView(pickImageButton: TextView) {
+        val newIcon = AppCompatResources.getDrawable(this,
+            R.drawable.ic_baseline_check_circle_outline_24)
+        pickImageButton.setCompoundDrawablesWithIntrinsicBounds(null, null,
+            newIcon, null)
+        pickImageButton.text = getString(R.string.image_was_selected)
+        pickImageButton.setTextColor(
+            AppCompatResources.getColorStateList(this,
+                R.color.trendingStart))
     }
 
     private fun selectIngredients() {
@@ -140,7 +148,7 @@ class RecipeEditForm : AppCompatActivity() {
 
             builder.setPositiveButton("OK") { dialog, _ ->
                 val adapter = IngredientsToSelectAdapter(chosenIngredients)
-                val ingredientsList = binding.editChosenIngredients
+                val ingredientsList = binding.chosenIngredients
                 ingredientsList.layoutManager = GridLayoutManager(
                     this@RecipeEditForm, GridLayoutManager.VERTICAL)
                 ingredientsList.adapter = adapter
@@ -153,9 +161,9 @@ class RecipeEditForm : AppCompatActivity() {
         }
     }
 
-    private fun saveRecipe() {
-        val name = binding.editRecipeNameEdit.text.toString()
-        val description = binding.editRecipeDescriptionEdit.text.toString()
+    private fun editRecipe(id : Long) {
+        val name = binding.registerRecipeNameEdit.text.toString()
+        val description = binding.registerRecipeDescriptionEdit.text.toString()
         val yield = binding.registerRecipeYieldEdit.text.toString().toInt()
         val ingredients = chosenIngredients
         var price = 0.0
@@ -164,6 +172,7 @@ class RecipeEditForm : AppCompatActivity() {
         }
 
         val recipe = Recipe(
+            id = id,
             name = name,
             description = description,
             yield = yield,

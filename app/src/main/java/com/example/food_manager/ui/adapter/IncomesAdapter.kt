@@ -1,6 +1,7 @@
 package com.example.food_manager.ui.adapter
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +13,7 @@ import com.bumptech.glide.Glide
 import com.example.food_manager.R
 import com.example.food_manager.data.dao.IncomeDAO
 import com.example.food_manager.domain.Income
+import com.example.food_manager.ui.income.IncomeEditForm
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.MainScope
@@ -51,6 +53,18 @@ class IncomesAdapter(private val incomes: ArrayList<Income>, private val incomes
         Glide.with(viewHolder.incomeImageView.context).
             load(Uri.parse(incomes[position].imgUri)).
                 into(viewHolder.incomeImageView)
+
+        viewHolder.itemView.setOnClickListener { view ->
+            val intent = Intent(view.context, IncomeEditForm::class.java)
+            val scope = MainScope()
+            scope.launch {
+                withContext(Dispatchers.IO) {
+                    val  income = incomesDAO.findByID(incomes[position].id)
+                    intent.putExtra("income", income)
+                    view.context.startActivity(intent)
+                }
+            }
+        }
 
         viewHolder.deleteButton.setOnClickListener {
             val builder = MaterialAlertDialogBuilder(viewHolder.itemView.context)

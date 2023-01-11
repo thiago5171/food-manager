@@ -30,19 +30,28 @@ interface RecipeWithIngredientsDAO {
     @Delete
     fun deleteOne(recipe: Recipe)
 
-    @Query("delete from ingredient where id = :id")
-    fun delete(id: Long)
+    @Update
+    fun edit(recipe: Recipe)
+
+    @Query("delete from recipeIngredientCrossRef where recipeID = :recipeID")
+    fun deleteOldIngredients(recipeID: Long)
 
     @Transaction
     fun editOne(recipe: Recipe, crossRefs: List<RecipeIngredientCrossRef>) {
-        delete(recipe.id)
-        insertRecipe(crossRefs,  recipe)
+        edit(recipe)
+        deleteOldIngredients(recipe.id)
+        for (crossRef in crossRefs) {
+            crossRef.recipeID = recipe.id
+            saveIngredient(crossRef)
+        }
     }
 
     @Query("select * from Ingredient")
     fun findRecipesById(): List<Ingredient>
 
-    @Query("select * from Ingredient inner join RecipeIngredientCrossRef r on r.ingredientID = id where recipeID = :id"   )
+    @Query("select id, name, description, quantity, unitMeasurement, price " +
+            "from Ingredient inner join RecipeIngredientCrossRef r on r.ingredientID = id " +
+            "where recipeID = :id")
     fun findIngredientsById(id: Long): List<Ingredient>
 
     @Query("select * from Recipe where id = :id")

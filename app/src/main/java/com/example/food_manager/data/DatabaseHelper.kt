@@ -14,7 +14,8 @@ import com.example.food_manager.domain.Ingredient
 import com.example.food_manager.domain.Recipe
 import com.example.food_manager.domain.RecipeIngredientCrossRef
 
-@Database(entities = [Recipe::class, Ingredient::class, RecipeIngredientCrossRef::class, Expense::class, Income::class], version = 1)
+@Database(entities = [Recipe::class, Ingredient::class, RecipeIngredientCrossRef::class, Expense::class, Income::class],
+    version = 1, exportSchema = false)
 abstract class DatabaseHelper : RoomDatabase() {
     abstract fun ingredientDAO(): IngredientDAO
 

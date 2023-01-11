@@ -1,6 +1,7 @@
 package com.example.food_manager.ui.adapter
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.food_manager.R
 import com.example.food_manager.data.dao.IngredientDAO
 import com.example.food_manager.domain.Ingredient
+import com.example.food_manager.ui.recipe.ingredient.IngredientEditForm
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.MainScope
@@ -48,6 +50,20 @@ class IngredientsAdapter(private val ingredients: ArrayList<Ingredient>, val ing
         viewHolder.priceView.text = "R$" + ingredients[position].price.toString()
         viewHolder.quantityView.text = ingredients[position].quantity.toString() + " " +
                 ingredients[position].unitMeasurement
+
+        viewHolder.itemView.setOnClickListener { view ->
+            val intent = Intent(view.context, IngredientEditForm::class.java)
+
+            val scope = MainScope()
+            scope.launch {
+                withContext(Dispatchers.IO) {
+                    val ingredient = ingredientsDAO.findByID(ingredients[position].id)
+                    intent.putExtra("ingredient", ingredient)
+                    view.context.startActivity(intent)
+                }
+            }
+        }
+
         viewHolder.deleteView.setOnClickListener {
             val builder = MaterialAlertDialogBuilder(viewHolder.itemView.context)
             builder.setTitle(R.string.delete_confirmation)

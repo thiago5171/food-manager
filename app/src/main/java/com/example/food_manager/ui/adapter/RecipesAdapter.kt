@@ -57,27 +57,15 @@ class RecipesAdapter (val recipes: ArrayList<Recipe>, val recipesDAO: RecipeWith
             load(Uri.parse(recipes[position].imgUri)).into(viewHolder.recipeImageView)
 
         viewHolder.itemView.setOnClickListener{view->
-            val i = Intent(view.context,  RecipeEditForm::class.java)
-
-
+            val intent = Intent(view.context,  RecipeEditForm::class.java)
             val scope = MainScope()
             scope.launch {
                 withContext(Dispatchers.IO) {
-                    val  item = recipesDAO.findFullRecipeById(recipes[position].id)
-                    i.putExtra("recipe", item)
-//                    val nameEdit = view.findViewById<TextView>(R.id.edit_recipe_name_edit)
-//                    val descriptionEdit = view.findViewById<TextView>(R.id.edit_recipe_description_edit)
-//                    val yieldEdit = view.findViewById<TextView>(R.id.edit_recipe_yield_field)
-//                    nameEdit.text = item.recipe.name
-//                    descriptionEdit.text = item.recipe.description
-//                    yieldEdit.text = item.recipe.yield.toString()
-
-                    recipes.clear()
-                    view.context.startActivity(i)
+                    val  recipeWithIngredients = recipesDAO.findFullRecipeById(recipes[position].id)
+                    intent.putExtra("recipe", recipeWithIngredients)
+                    view.context.startActivity(intent)
                 }
             }
-            notifyItemRemoved(position)
-            notifyItemRangeChanged(position, recipes.size)
         }
 
         viewHolder.deleteButton.setOnClickListener {

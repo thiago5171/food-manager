@@ -30,6 +30,13 @@
                 android:value="" />
         </activity>
         <activity
+            android:name=".ui.income.IncomeEditForm"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".ui.recipe.ingredient.list.IngredientList"
             android:exported="false">
             <meta-data
@@ -100,6 +107,13 @@
                 android:value="" />
         </activity>
         <activity
+            android:name=".ui.expense.ExpenseEditForm"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".ui.recipe.ingredient.list.SingleIngredientToSelect"
             android:exported="false">
             <meta-data
@@ -122,6 +136,13 @@
         </activity>
         <activity
             android:name=".ui.recipe.ingredient.IngredientRegisterForm"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ui.recipe.ingredient.IngredientEditForm"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
