@@ -38,9 +38,10 @@
                 <ImageView
                     android:id="@+id/recipe_image"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:adjustViewBounds="false"
                     android:background="@android:color/transparent"
+                    android:scaleType="centerCrop"
                     app:srcCompat="@drawable/ic_launcher_foreground"
                     tools:ignore="ImageContrastCheck"
                     tools:srcCompat="?attr/actionBarDivider"
