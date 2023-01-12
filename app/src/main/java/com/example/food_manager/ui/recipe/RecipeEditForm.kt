@@ -14,7 +14,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.food_manager.R
 import com.example.food_manager.data.DatabaseHelper
-import com.example.food_manager.databinding.ActivityRecipeRegisterFormBinding
+import com.example.food_manager.databinding.ActivityRecipeEditFormBinding
 import com.example.food_manager.domain.Ingredient
 import com.example.food_manager.domain.Recipe
 import com.example.food_manager.domain.RecipeIngredientCrossRef
@@ -27,7 +27,7 @@ import kotlinx.coroutines.withContext
 
 class RecipeEditForm : AppCompatActivity() {
     private val binding by lazy {
-        ActivityRecipeRegisterFormBinding.inflate(layoutInflater)
+        ActivityRecipeEditFormBinding.inflate(layoutInflater)
     }
 
     private var chosenIngredients = ArrayList<Ingredient>()
@@ -40,9 +40,6 @@ class RecipeEditForm : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-
-        val title = binding.registerRecipeTitle
-        title.text = getString(R.string.edit_recipe)
 
         val recipeWithIngredients = intent.getSerializableExtra("recipe") as RecipeWithIngredients?
 
@@ -63,6 +60,11 @@ class RecipeEditForm : AppCompatActivity() {
         val saveRecipeButton = binding.saveRecipeBtn
         saveRecipeButton.setOnClickListener {
             recipeWithIngredients?.recipe?.id?.let { id -> editRecipe(id) }
+        }
+
+        val cancelButton = binding.cancelRecipeRegisterBtn
+        cancelButton.setOnClickListener {
+            finish()
         }
     }
 
