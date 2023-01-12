@@ -18,4 +18,6 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="wine">#7C0000</color>
+    <color name="red">#F44336</color>
+    <color name="cyan">	#00FFFF</color>
 </resources>

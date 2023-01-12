@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.food_manager.databinding.ActivityMainBinding
 import com.example.food_manager.ui.finances.Finances
+import com.example.food_manager.ui.graphs.Graphs
 import com.example.food_manager.ui.recipe.ingredient.list.IngredientList
 import com.example.food_manager.ui.recipe.list.RecipeList
 
@@ -32,6 +33,12 @@ class Main : AppCompatActivity() {
         val expenseLayout = binding.finances
         expenseLayout.setOnClickListener {
             val intent = Intent(this, Finances::class.java)
+            startActivity(intent)
+        }
+
+        val graphsLayout = binding.graphs
+        graphsLayout.setOnClickListener {
+            val intent = Intent(this, Graphs::class.java)
             startActivity(intent)
         }
     }
